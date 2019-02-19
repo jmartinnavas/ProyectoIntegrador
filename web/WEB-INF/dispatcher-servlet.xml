@@ -18,8 +18,15 @@
     -->
     <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
         <property name="mappings">
-            <props>
+            <props>             
                 <prop key="index.htm">indexController</prop>
+                <!--mapping vehiculos-->
+                <prop key="vehiculo.htm">vehiculoController</prop>
+                <prop key="AddVeh.htm">vehiculoController</prop>
+                <prop key="EditVeh.htm">vehiculoController</prop>
+                <prop key="DeleteVeh.htm">vehiculoController</prop>
+                <prop key="ConsultVeh.htm">vehiculoController</prop>
+                
             </props>
         </property>
     </bean>
@@ -35,5 +42,6 @@
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
+    <bean name="vehiculoController" class="Controller.VehiculoController" />
 
 </beans>
