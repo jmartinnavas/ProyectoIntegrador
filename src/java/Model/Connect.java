@@ -16,9 +16,9 @@ public class Connect {
     public DriverManagerDataSource GetConnect() {
         DriverManagerDataSource datos = new DriverManagerDataSource();
         datos.setDriverClassName("org.postgresql.Driver");
-        datos.setUrl("jdbc:postgresql://localhost:5432/ProyectoIntegrador");
+        datos.setUrl("jdbc:postgresql://localhost:5432/proyectointegrador");
         datos.setUsername("postgres");
-        datos.setPassword("federico");
+        datos.setPassword("manizales11");
         return datos;
     }
 }
