@@ -5,12 +5,18 @@
  */
 package Controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import Model.Connect;
 import Model.Vehiculo;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+//import javax.validation.Valid;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -21,6 +27,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -85,7 +95,8 @@ public class VehiculoController {
                     + "marca=? ,"
                     + "modelo=?,"
                     + "motor=?,"
-                    + "fecha_ingreso=?,"
+                    + "fecha_ingreso=?"
+                    + "fecha_soat"
                     + "foto=? "
                     + "WHERE placa=?;";
             this.jdbc.update(sql, v.getMarca(), v.getModelo(),
@@ -99,7 +110,7 @@ public class VehiculoController {
     //añadir vehiculo
     @RequestMapping(method = RequestMethod.GET, value = "AddVeh.htm")
     public ModelAndView formAdd() {
-
+        System.out.println("vista add veh");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("AddVeh");
         mv.addObject("vehiculos", new Vehiculo());
@@ -107,24 +118,41 @@ public class VehiculoController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "AddVeh.htm")
-    public ModelAndView form(
+    public ModelAndView formAddPost(
+            @RequestParam("foto") MultipartFile file,
             @ModelAttribute("vehiculos") Vehiculo v,
             BindingResult result,
-            SessionStatus status
-    ) {
+            SessionStatus status,
+            HttpServletRequest request
+    )
+    {
+        
         ModelAndView mv;
-        if (result.hasErrors()) {
-            mv = new ModelAndView();
-            mv.setViewName("AddVeh");
-            mv.addObject("vehiculos", new Vehiculo());
-        } else {
-            String sql = "Insert into vehiculo(placa,marca,modelo,motor,fecha_ingreso,foto)"
-                    + " VALUES (?,?,?,?,?,?)";
-            this.jdbc.update(sql, v.getPlaca(), v.getMarca(), v.getModelo(),
-                    v.getMotor(), v.getFecha_ingreso(), v.getFoto());
 
-            mv = new ModelAndView("redirect:/vehiculo.htm");
+        String path = request.getServletContext().getRealPath("/PUBLIC") + "/resources/img/profilesFolder/vehiculos/";
+        System.out.println(path);
+        String sql = "Insert into vehiculo(placa,marca,modelo,motor,fecha_ingreso,fecha_soat ,foto)"
+                + " VALUES (?,?,?,?,?,?,?)";
+        this.jdbc.update(sql, v.getPlaca(), v.getMarca(), v.getModelo(),
+                v.getMotor(), v.getFecha_ingreso(), v.getFecha_soat(), "/PUBLIC/resources/img/profilesFolder/vehiculos/" + v.getPlaca() + "." + file.getContentType().split("/")[1]
+        );
+
+        InputStream is;
+        try {
+            is = file.getInputStream();
+
+            File f = new File(path + v.getPlaca() + "." + file.getContentType().split("/")[1]);
+            FileOutputStream ous = new FileOutputStream(f);
+            int dato = is.read();
+
+            while (dato != -1) {
+                ous.write(dato);
+                dato = is.read();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        mv = new ModelAndView("redirect:/vehiculo.htm");
 
         return mv;
     }
@@ -156,6 +184,7 @@ public class VehiculoController {
                     veh.setModelo(rs.getString("modelo"));
                     veh.setMotor(rs.getString("motor"));
                     veh.setFecha_ingreso(rs.getString("fecha_ingreso"));
+                    veh.setFecha_soat(rs.getString("fecha_soat"));
                     veh.setFoto(rs.getString("foto"));
 
                 }
@@ -167,7 +196,7 @@ public class VehiculoController {
     // cargar vista principal de vehiculo
     @RequestMapping("vehiculo.htm")
     public ModelAndView form() {
-
+        System.out.println("carga de datos");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("vehiculo");
         String SQL = "select * from vehiculo;";
