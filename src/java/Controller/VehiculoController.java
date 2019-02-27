@@ -126,7 +126,7 @@ public class VehiculoController {
             HttpServletRequest request
     )
     {
-        
+
         ModelAndView mv;
 
         String path = request.getServletContext().getRealPath("/PUBLIC") + "/resources/img/profilesFolder/vehiculos/";

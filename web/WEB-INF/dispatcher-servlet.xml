@@ -26,10 +26,12 @@
                 <prop key="EditVeh.htm">vehiculoController</prop>
                 <prop key="DeleteVeh.htm">vehiculoController</prop>
                 <prop key="ConsultVeh.htm">vehiculoController</prop>
-                 <!--mapping conductores-->
+                <!--mapping conductores-->
                 <prop key="conductor.htm">conductorController</prop>
                 <prop key="DeleteCon.htm">conductorController</prop>
-                
+                <prop key="AddCon.htm">conductorController</prop>
+                <prop key="ConsultCon.htm">conductorController</prop>
+                <prop key="EditCon.htm">conductorController</prop>
             </props>
         </property>
     </bean>
@@ -47,6 +49,6 @@
           p:viewName="index" />
     <bean name="vehiculoController" class="Controller.VehiculoController" />
     
-      <bean name="conductorController" class="Controller.ConductorController" />
+    <bean name="conductorController" class="Controller.ConductorController" />
 
 </beans>

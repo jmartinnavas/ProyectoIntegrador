@@ -6,24 +6,28 @@
 package Model;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import jdk.nashorn.internal.runtime.logging.Logger;
 
 /**
  *
  * @author JMartinNavas
  */
 public class Conductor {
-    private int cedula; 
-    private String nombre ; 
-    private String apellido ; 
-    private int telefono ; 
-    private int telefono_soporte ; 
-    private String estado; 
-    private String foto ; 
-    private String placa ; 
-    private Date fecha_ingreso;
-    
 
-    public Conductor(int cedula, String nombre, String apellido, int telefono, int telefono_soporte, String estado, String foto, String placa, Date fecha_ingreso) {
+    private String cedula;
+    private String nombre;
+    private String apellido;
+    private String telefono;
+    private String telefono_soporte;
+    private String estado;
+
+    private String placa;
+    private Date fecha_ingreso;
+    private String foto;
+
+    public Conductor(String cedula, String nombre, String apellido, String telefono, String telefono_soporte, String estado, String foto, String placa, Date fecha_ingreso) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -33,24 +37,23 @@ public class Conductor {
         this.foto = foto;
         this.placa = placa;
         this.fecha_ingreso = fecha_ingreso;
-        
-    }
 
-    
+    }
 
     public Conductor() {
     }
+
     /**
      * @return the cedula
      */
-    public int getCedula() {
+    public String getCedula() {
         return cedula;
     }
 
     /**
      * @param cedula the cedula to set
      */
-    public void setCedula(int cedula) {
+    public void setCedula(String cedula) {
         this.cedula = cedula;
     }
 
@@ -85,28 +88,28 @@ public class Conductor {
     /**
      * @return the telefono
      */
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
     /**
      * @param telefono the telefono to set
      */
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
     /**
      * @return the telefono_soporte
      */
-    public int getTelefono_soporte() {
+    public String getTelefono_soporte() {
         return telefono_soporte;
     }
 
     /**
      * @param telefono_soporte the telefono_soporte to set
      */
-    public void setTelefono_soporte(int telefono_soporte) {
+    public void setTelefono_soporte(String telefono_soporte) {
         this.telefono_soporte = telefono_soporte;
     }
 
@@ -162,12 +165,14 @@ public class Conductor {
     /**
      * @param fecha_ingreso the fecha_ingreso to set
      */
-    public void setFecha_ingreso(Date fecha_ingreso) {
-        this.fecha_ingreso = fecha_ingreso;
+    public void setFecha_ingreso(String fecha_ingreso) {
+        try {
+            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-mm-dd");
+            java.util.Date date = sdf1.parse(fecha_ingreso);
+            this.fecha_ingreso = new java.sql.Date(date.getTime());
+        } catch (ParseException e) {
+            System.out.println("error al convertir");
+        }
     }
-    
-    
-    
-    
-    
+
 }
