@@ -87,14 +87,14 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">Cedula</label>
                                             <form:input type="number" path="cedula" class="form-control"  />
-                                           <form:errors path="cedula"  cssClass="alert alert-danger" />
+                                            <form:errors path="cedula"  cssClass="alert alert-danger" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Nombre</label>
                                             <form:input path="nombre" class="form-control" />
-                                       <form:errors path="nombre"  cssClass="alert alert-danger" />
+                                            <form:errors path="nombre"  cssClass="alert alert-danger" />
                                         </div>
                                     </div>
                                 </div>
@@ -104,14 +104,14 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">Apellidos</label>
                                             <form:input path="apellido" class="form-control" />
-                                           <form:errors path="apellido"  cssClass="alert alert-danger" />
+                                            <form:errors path="apellido"  cssClass="alert alert-danger" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Telefono</label>
                                             <form:input type="number" path="telefono" class="form-control" />
-                                          <form:errors path="telefono"  cssClass="alert alert-danger" />
+                                            <form:errors path="telefono"  cssClass="alert alert-danger" />
                                         </div>
                                     </div>
                                 </div>
@@ -121,14 +121,14 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">Telefono Soporte</label>
                                             <form:input type="number" path="telefono_soporte" class="form-control" />
-                                          <form:errors path="telefono_soporte"  cssClass="alert alert-danger" />
+                                            <form:errors path="telefono_soporte"  cssClass="alert alert-danger" />
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Fecha de ingreso</label>
                                             <form:input  type="date" path="fecha_ingreso" class="form-control" />
-                                        <form:errors path="fecha_ingreso"  cssClass="alert alert-danger" />
+                                            <form:errors path="fecha_ingreso"  cssClass="alert alert-danger" />
                                         </div>
                                     </div>
                                 </div>
@@ -138,23 +138,31 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">seleccionar archivo</label>
                                             <form:input type="file" path="foto" class="form-control" />
-                                            
+
                                         </div>
                                     </div>
-                                            
+
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Estado del conductor</label>
                                             <form:input path="estado" class="form-control" />
-                                             <form:errors path="estado"  cssClass="alert alert-danger" />
+                                            <form:errors path="estado"  cssClass="alert alert-danger" />
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Vehiculo Asociado</label>
-                                            <form:input path="placa" class="form-control" />
-                                        
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Vehiculo Asociado al conductor</label>
+                                                <form:select path="placa" class="form-control" cssClass="form-control">
+                                                    <form:option value="0" disabled="true">Seleccione</form:option>
+                                                    <form:options items="${vehiculo_placa}" />
+                                                </form:select>
+
+                                                <form:errors path="placa"  cssClass="alert alert-danger"/>
+                                            </div
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -173,7 +181,7 @@
             </div>
         </div>
     </div>
- 
+
 </body>
 
 <script src=<c:url value="/PUBLIC/assets/js/jquery-3.1.0.min.js"></c:url> type="text/javascript"></script>

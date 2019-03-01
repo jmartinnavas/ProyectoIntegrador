@@ -15,7 +15,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 //import javax.validation.Valid;
 import org.springframework.dao.DataAccessException;
@@ -33,7 +35,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
-
 /**
  *
  * @author JMartinNavas
@@ -48,9 +49,9 @@ public class ConductorController {
         this.jdbc = new JdbcTemplate(con.GetConnect());
         //this.Validator = new CondValidator();
     }
-    
+
     //EDITAR CONDUCTOR
-      @RequestMapping(method = RequestMethod.GET, value = "EditCon.htm")
+    @RequestMapping(method = RequestMethod.GET, value = "EditCon.htm")
     public ModelAndView formeEdit(HttpServletRequest request) {
 
         ModelAndView mv = new ModelAndView();
@@ -58,10 +59,10 @@ public class ConductorController {
         Conductor c = this.Selectconductor(id);
         mv.setViewName("EditCon");
         mv.addObject("conductores", new Conductor(id, c.getNombre(), c.getApellido(), c.getTelefono(), c.getTelefono_soporte(),
-                        c.getEstado(), c.getFoto(), c.getPlaca(), c.getFecha_ingreso()));
+                c.getEstado(), c.getFoto(), c.getPlaca(), c.getFecha_ingreso()));
         return mv;
     }
-    
+
     //editar post
     @RequestMapping(method = RequestMethod.POST, value = "EditCon.htm")
     public ModelAndView form(
@@ -79,7 +80,7 @@ public class ConductorController {
             Conductor tmp = this.Selectconductor(id);
             mv.setViewName("EditCon");
             mv.addObject("conductores", new Conductor(id, c.getNombre(), c.getApellido(), c.getTelefono(), c.getTelefono_soporte(),
-                        c.getEstado(), c.getFoto(), c.getPlaca(), c.getFecha_ingreso()));
+                    c.getEstado(), c.getFoto(), c.getPlaca(), c.getFecha_ingreso()));
         } else {
             String id = request.getParameter("id");
             Integer.parseInt(id);
@@ -96,16 +97,13 @@ public class ConductorController {
                     + "placa=?,"
                     + "fecha_ingreso=?"
                     + " WHERE cedula=?;";
-            this.jdbc.update(sql,Integer.parseInt( c.getCedula()), c.getNombre(),c.getApellido(),Integer.parseInt( c.getTelefono()),Integer.parseInt( c.getTelefono_soporte()),
+            this.jdbc.update(sql, Integer.parseInt(c.getCedula()), c.getNombre(), c.getApellido(), Integer.parseInt(c.getTelefono()), Integer.parseInt(c.getTelefono_soporte()),
                     c.getEstado(), c.getFoto(), c.getPlaca(), c.getFecha_ingreso(), Integer.parseInt(id));
 
             mv = new ModelAndView("redirect:/conductor.htm");
         }
         return mv;
     }
-    
-    
-    
 
     //cargar vista consultar conductor
     @RequestMapping(method = RequestMethod.GET, value = "ConsultCon.htm")
@@ -175,7 +173,7 @@ public class ConductorController {
         InputStream is;
         try {
             is = file.getInputStream();
-            File f = new File(path + c.getCedula()+ "." + file.getContentType().split("/")[1]);
+            File f = new File(path + c.getCedula() + "." + file.getContentType().split("/")[1]);
             FileOutputStream ous = new FileOutputStream(f);
             int dato = is.read();
             while (dato != -1) {
@@ -189,6 +187,12 @@ public class ConductorController {
         mv = new ModelAndView("redirect:/conductor.htm");
 
         return mv;
+    }
+
+    @ModelAttribute("vehiculo_placa")
+    public Map<String, String> ListVeh() {
+       VehiculoController vc = new VehiculoController();
+        return vc.ListVeh();
     }
 
     /**
@@ -214,8 +218,6 @@ public class ConductorController {
                     con.setFoto(rs.getString("foto"));
                     con.setPlaca(rs.getString("placa"));
                     con.setFecha_ingreso(rs.getString("fecha_ingreso"));
-                    
-                    
 
                 }
                 return con;
