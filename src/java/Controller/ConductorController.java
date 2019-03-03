@@ -66,6 +66,7 @@ public class ConductorController {
     //editar post
     @RequestMapping(method = RequestMethod.POST, value = "EditCon.htm")
     public ModelAndView form(
+            @RequestParam("foto") MultipartFile file,
             @ModelAttribute("conductores") Conductor c,
             BindingResult result,
             SessionStatus status,
@@ -73,35 +74,45 @@ public class ConductorController {
     ) {
 
         ModelAndView mv;
-        if (result.hasErrors()) {
-            mv = new ModelAndView();
-            String id = request.getParameter("id");
-            System.out.println("mi id if " + id);
-            Conductor tmp = this.Selectconductor(id);
-            mv.setViewName("EditCon");
-            mv.addObject("conductores", new Conductor(id, c.getNombre(), c.getApellido(), c.getTelefono(), c.getTelefono_soporte(),
-                    c.getEstado(), c.getFoto(), c.getPlaca(), c.getFecha_ingreso()));
-        } else {
-            String id = request.getParameter("id");
-            Integer.parseInt(id);
-            System.out.println("mi id else " + id);
+        String path = request.getServletContext().getRealPath("/PUBLIC") + "/resources/img/profilesFolder/conductores/";
 
-            String sql = "UPDATE conductor SET "
-                    + "cedula=? ,"
-                    + "nombre=?,"
-                    + "apellido=?,"
-                    + "telefono=?,"
-                    + "telefono_soporte=?,"
-                    + "estado=?,"
-                    + "foto=?,"
-                    + "placa=?,"
-                    + "fecha_ingreso=?"
-                    + " WHERE cedula=?;";
-            this.jdbc.update(sql, Integer.parseInt(c.getCedula()), c.getNombre(), c.getApellido(), Integer.parseInt(c.getTelefono()), Integer.parseInt(c.getTelefono_soporte()),
-                    c.getEstado(), c.getFoto(), c.getPlaca(), c.getFecha_ingreso(), Integer.parseInt(id));
+        mv = new ModelAndView();
+        String id = request.getParameter("id");
+        Integer.parseInt(id);
+        System.out.println("mi id else " + id);
 
-            mv = new ModelAndView("redirect:/conductor.htm");
+        String sql = "UPDATE conductor SET "
+                + "cedula=? ,"
+                + "nombre=?,"
+                + "apellido=?,"
+                + "telefono=?,"
+                + "telefono_soporte=?,"
+                + "estado=?,"
+                + "foto=?,"
+                + "placa=?,"
+                + "fecha_ingreso=?"
+                + " WHERE cedula=?;";
+        this.jdbc.update(sql, Integer.parseInt(c.getCedula()), c.getNombre(), c.getApellido(), Integer.parseInt(c.getTelefono()), Integer.parseInt(c.getTelefono_soporte()),
+                c.getEstado(),"/PUBLIC/resources/img/profilesFolder/conductores/" + c.getCedula() + "." + file.getContentType().split("/")[1]
+                , c.getPlaca(), c.getFecha_ingreso(), Integer.parseInt(id));
+
+         InputStream is;
+         try {
+            is = file.getInputStream();
+            File f = new File(path + c.getCedula() + "." + file.getContentType().split("/")[1]);
+            FileOutputStream ous = new FileOutputStream(f);
+            int dato = is.read();
+            while (dato != -1) {
+                ous.write(dato);
+                dato = is.read();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ConductorController.class.getName()).log(Level.SEVERE, null, ex);
+
         }
+         
+        mv = new ModelAndView("redirect:/conductor.htm");
+
         return mv;
     }
 
@@ -191,7 +202,7 @@ public class ConductorController {
 
     @ModelAttribute("vehiculo_placa")
     public Map<String, String> ListVeh() {
-       VehiculoController vc = new VehiculoController();
+        VehiculoController vc = new VehiculoController();
         return vc.ListVeh();
     }
 

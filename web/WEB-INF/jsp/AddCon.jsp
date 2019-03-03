@@ -138,24 +138,28 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">seleccionar archivo</label>
                                             <form:input type="file" path="foto" class="form-control" />
-
+                                            <input type="submit" class="btn btn-google" value="Cargar Fotografia"/>
                                         </div>
                                     </div>
 
                                     <div class="col-md-4">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Estado del conductor</label>
-                                            <form:input path="estado" class="form-control" />
+                                            <form:select path="estado" class="form-control">
+                                             <form:option value="NONE" label="--- SELECCIONAR ---"/>
+                                              <form:option value="activo" label="Activo"/>
+                                               <form:option value="inactivo" label="Inactivo"/>
+                                               </form:select>
                                             <form:errors path="estado"  cssClass="alert alert-danger" />
                                         </div>
                                     </div>
                                     <div class="row">
 
-                                        <div class="col-md-12">
+                                        <div class="col-md-4">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">Vehiculo Asociado al conductor</label>
-                                                <form:select path="placa" class="form-control" cssClass="form-control">
-                                                    <form:option value="0" disabled="true">Seleccione</form:option>
+                                                <form:select  path="placa" class="form-control" >
+                                                    <form:option value="0" disabled="false">--SELECCIONAR--</form:option>
                                                     <form:options items="${vehiculo_placa}" />
                                                 </form:select>
 
