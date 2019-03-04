@@ -179,6 +179,8 @@
                                                 <label class="control-label">Archivo Adjunto</label>
                                                     <a href= "${datos.documento_soporte}" download="documentos soporte ${datos.id}">descargar documento</a>                                            </div>
                                         </div>
+                                                    
+                                        </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
                                                 <label class="control-label">tipo de falla</label>

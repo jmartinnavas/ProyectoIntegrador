@@ -205,7 +205,7 @@
                                         <div class="form-group label-floating">
                                             <label class="control-label">seleccionar archivo</label>
 
-                                            <form:input  type="file" path="foto" class="form-control" />
+                                            <form:input  type="file" path="foto" class="form-control"  />
                                         </div>
                                     </div>
 

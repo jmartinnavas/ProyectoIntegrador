@@ -146,7 +146,7 @@
                                     <div class="card-header" data-background-color="orange">
                                         <h4 class="title">Incidencias de Vehiculos</h4>
                                         <p class="category">Informacion General del modulo</p>
-                                        <a class="btn-floating" href=<c:url value="AddInciVeh.htm"></c:url>><i class="material-icons">add</i></a>
+                                        <a class="btn-floating" href=<c:url value="AddInciVeh.htm?placa=${placa}"></c:url>><i class="material-icons">add</i></a>
                                         </div>
                                         <div class="card-content table-responsive">
                                             <table class="table">
@@ -155,7 +155,7 @@
                                                 <th data-field="marca" >Fecha de Fin</th>
                                                 <th data-field="modelo" >Costo</th>
                                                 <th data-field="motor" >tipo de falla</th>
-                            
+
 
                                                 </thead>
                                                 <tbody>
@@ -165,7 +165,7 @@
                                                         <td><c:out value="${dato.fecha_fin}"/></td>
                                                         <td><c:out value="${dato.costo}"/></td>
                                                         <td><c:out value="${dato.tipo_falla}"/></td>
-                                                    
+
 
                                                         <td>
                                                             <a class="btn btn-warning" href="<c:url value="ConsultInciVeh.htm?id=${dato.id}"></c:url>">Consultar</a>

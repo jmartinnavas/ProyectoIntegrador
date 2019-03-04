@@ -20,7 +20,7 @@ public class InciVeh {
     private Date fecha_fin;
     private String observacion;
     private Double costo;
-    private String documentoSoporte;
+    private String documento_soporte;
     private String tipo_falla;
     private String vehiculo;
 
@@ -56,13 +56,15 @@ public class InciVeh {
         this.costo = costo;
     }
 
-    public String getDocumentoSoporte() {
-        return documentoSoporte;
+    public String getDocumento_soporte() {
+        return documento_soporte;
     }
 
-    public void setDocumentoSoporte(String documentoSoporte) {
-        this.documentoSoporte = documentoSoporte;
+    public void setDocumento_soporte(String documento_soporte) {
+        this.documento_soporte = documento_soporte;
     }
+
+ 
 
     public String getTipo_falla() {
         return tipo_falla;

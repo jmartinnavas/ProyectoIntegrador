@@ -87,6 +87,8 @@ public class VehiculoController {
 
    
             String id = request.getParameter("id");
+            if (!file.isEmpty())
+            {
             String sql = "UPDATE vehiculo SET "
                     + "marca=? ,"
                     + "modelo=?,"
@@ -115,7 +117,19 @@ public class VehiculoController {
             } catch (IOException ex) {
                 Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            }
+            else {
+              String sql = "UPDATE vehiculo SET "
+                    + "marca=? ,"
+                    + "modelo=?,"
+                    + "motor=?,"
+                    + "fecha_ingreso=?,"
+                    + "fecha_soat=?"              
+                    + "WHERE placa=?;";
 
+            this.jdbc.update(sql, v.getMarca(), Integer.parseInt(v.getModelo()),
+               Integer.parseInt( v.getMotor()), v.getFecha_ingreso(), v.getFecha_soat(), id);
+            }
             mv = new ModelAndView("redirect:/vehiculo.htm");
         
         return mv;

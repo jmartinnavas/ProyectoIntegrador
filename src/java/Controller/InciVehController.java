@@ -55,18 +55,16 @@ public class InciVehController {
         System.out.println("carga de datos");
         ModelAndView mv = new ModelAndView();
         mv.setViewName("inciVeh");
-        String SQL = "select * from incidencias_vehiculos where vehiculo=" +"'"+ id+"'";
+        String SQL = "select * from incidencias_vehiculos where vehiculo=" + "'" + id + "'";
         List l;
         l = this.jdbc.queryForList(SQL);
         System.out.println(l.toString());
         mv.addObject("datos", l);
+        mv.addObject("placa", id);
         return mv;
     }
 
-    
-    
     //cargar vista consultar incidencia vehiculo
-
     @RequestMapping(method = RequestMethod.GET, value = "ConsultInciVeh.htm")
     public ModelAndView formconsulta(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
@@ -76,10 +74,69 @@ public class InciVehController {
         mv.addObject("datos", iv);
         return mv;
     }
-    
-    
-    
-        /**
+
+    //añadir vehiculo
+    @RequestMapping(method = RequestMethod.GET, value = "AddInciVeh.htm")
+    public ModelAndView formAdd(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
+        String placa = request.getParameter("placa");
+
+        mv.setViewName("AddInciVeh");
+
+        mv.addObject("InciVehiculos", new InciVeh());
+        mv.addObject("placa", placa);
+
+        return mv;
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "AddInciVeh.htm")
+    public ModelAndView formAddPost(
+            @RequestParam("documento_soporte") MultipartFile file,
+            @ModelAttribute("InciVehiculos") InciVeh iv,
+            BindingResult result,
+            SessionStatus status,
+            HttpServletRequest request
+    ) {
+
+        ModelAndView mv;
+        System.out.println("addinciveh post");
+        String path = request.getServletContext().getRealPath("/PUBLIC") + "/resources/documents/vehiculos";
+        System.out.println(path);
+        String sql = "Insert into incidencias_vehiculos(fecha_inicio,fecha_fin,observacion,costo,"
+                + "documento_soporte,tipo_falla ,vehiculo)"
+                + " VALUES (?,?,?,?,?,?,?)";
+        this.jdbc.update(sql, iv.getFecha_inicio(), iv.getFecha_fin(), iv.getObservacion(), iv.getCosto(),
+                "/PUBLIC/resources/documents/vehiculos" + iv.getVehiculo() + iv.getFecha_inicio() + "." + file.getContentType().split("/")[1],
+                iv.getTipo_falla(), iv.getVehiculo()
+        );
+
+        InputStream is;
+        try {
+            System.out.println("subir archivo");
+
+            is = file.getInputStream();
+
+            File f = new File(path + iv.getVehiculo() + iv.getFecha_inicio() + "." + file.getContentType().split("/")[1]);
+            FileOutputStream ous = new FileOutputStream(f);
+            int dato = is.read();
+
+            while (dato != -1) {
+                System.out.println("subiendo");
+
+                ous.write(dato);
+                dato = is.read();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                            System.out.println("vista inciveh");
+
+        mv = new ModelAndView("redirect:/inciVeh.htm?id="+ iv.getVehiculo());
+
+        return mv;
+    }
+
+    /**
      * retorna el objeto vehiculo buscado por su placa
      *
      * @param placa placa del vehiculo a buscar
@@ -97,7 +154,7 @@ public class InciVehController {
                     Inciveh.setFecha_fin(rs.getString("fecha_fin"));
                     Inciveh.setObservacion(rs.getString("observacion"));
                     Inciveh.setCosto(Double.parseDouble(rs.getString("costo")));
-                    Inciveh.setDocumentoSoporte(rs.getString("documento_soporte"));
+                    Inciveh.setDocumento_soporte(rs.getString("documento_soporte"));
                     Inciveh.setTipo_falla(rs.getString("tipo_falla"));
 
                 }
@@ -105,4 +162,5 @@ public class InciVehController {
             }
         });
     }
+
 }
