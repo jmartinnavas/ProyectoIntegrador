@@ -5,7 +5,7 @@
 <html>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Consultar Vehiculo ${vehiculos.placa}</title>
+    <title>Consultar Incidencia</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -139,36 +139,21 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header" data-background-color="red">
-                                    <h4 class="title">Consultar Vehiculo</h4>
+                                    <h4 class="title">Consultar Incidencia De Vehiculo</h4>
                                     <p class="category">Revision Detallada</p>
                                 </div>
                                 <div class="card-content">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">Placa</label>
-                                                <input class="form-control" value="<c:out value="${vehiculos.placa}"/>" disabled="disabled" />
+                                                <label class="control-label">Fecha de inicio</label>
+                                                <input class="form-control" value="<c:out value="${datos.fecha_inicio}"/>" disabled="disabled" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">marca</label>
-                                                <input class="form-control" value="<c:out value="${vehiculos.marca}"/>" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">modelo</label>
-                                                <input class="form-control" value="<c:out value="${vehiculos.modelo}"/>" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">motor</label>
-                                                <input  class="form-control" value="<c:out value="${vehiculos.motor}"/>" disabled="disabled" />
+                                                <label class="control-label">Fecha de fin</label>
+                                                <input class="form-control" value="<c:out value="${datos.fecha_fin}"/>" disabled="disabled" />
                                             </div>
                                         </div>
                                     </div>
@@ -176,14 +161,28 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">fecha de ingreso</label>
-                                                <input class="form-control" value="<c:out value="${vehiculos.fecha_ingreso}"/>" disabled="disabled" />
+                                                <label class="control-label">Observacion</label>
+                                                <input class="form-control" value="<c:out value="${datos.observacion}"/>" disabled="disabled" />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group label-floating">
-                                                <label class="control-label">fecha de soat</label>
-                                                <input class="form-control" value="<c:out value="${vehiculos.fecha_soat}"/>" disabled="disabled" />
+                                                <label class="control-label">Costo</label>
+                                                <input  class="form-control" value="<c:out value="${datos.costo}"/>" disabled="disabled" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Archivo Adjunto</label>
+                                                    <a href= "${datos.documento_soporte}" download="documentos soporte ${datos.id}">descargar documento</a>                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">tipo de falla</label>
+                                                <input class="form-control" value="<c:out value="${datos.tipo_falla}"/>" disabled="disabled" />
                                             </div>
                                         </div>
                                     </div>
@@ -191,21 +190,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="card card-profile">
-                                <div class="card-avatar">
-                                    <a href="#pablo">
-                                        <img class="img" src="<c:url value="${vehiculos.foto}"></c:url>" />
-                                        </a>
-                                    </div>
-
-                                    <div class="content">
-                                        <h6 class="category text-gray">Fotografia del vehiculo</h6>
-                                        <h4 class="card-title"></h4>
-                                    </div>
-                                </div>
-                            </div>
-                            <a  href="<c:url value="inciVeh.htm?id=${vehiculos.placa}"></c:url>"> INCIDENCIAS DE ESTE VEHICULO </a>
+     
 
                         </div>
                     </div>

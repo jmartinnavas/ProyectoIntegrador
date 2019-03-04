@@ -7,10 +7,8 @@ package Controller;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import Model.Connect;
 import Model.Vehiculo;
-import Controller.ConductorController;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.ResultSet;
@@ -89,7 +87,6 @@ public class VehiculoController {
 
    
             String id = request.getParameter("id");
-            System.out.println("id else " + id);
             String sql = "UPDATE vehiculo SET "
                     + "marca=? ,"
                     + "modelo=?,"
