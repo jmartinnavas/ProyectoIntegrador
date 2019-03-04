@@ -207,83 +207,85 @@
                                             <div class="col-md-4">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">foto del conductor</label>
-                                                    <form:input  type="file" path="foto" class="form-control"  />
+
+                                                    <form:input  type="file" path="foto" class="form-control" value="${conductores.foto}" />
+
                                                 </div>
                                             </div>
-
-
-
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Vehiculo Asociado al conductor</label>
-                                                    <form:select  path="placa" class="form-control" cssClass="form-control">
-                                                        <form:option value="NONE" label="--- SELECCIONAR ---"/>
-                                                        <form:options items="${vehiculo_placa}" />
-                                                    </form:select>
-
-                                                    <form:errors path="placa"  cssClass="alert alert-danger"/>
-                                                </div>
-                                            </div>
-
-
-
 
 
 
 
                                             <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Fecha de Ingreso</label>
-                                                    <form:input type="date" path="fecha_ingreso" class="form-control"  />
-                                                    <form:errors path="fecha_ingreso"  cssClass="alert alert-danger" />
+                                                 <div class="form-group label-floating">
+                                                <label class="control-label">Vehiculo Asociado al conductor</label>
+                                                <form:select  path="placa" class="form-control" cssClass="form-control">
+                                                    <form:option value="${conductores.placa}"/>
+                                                    <form:options items="${vehiculo_placa}" />
+                                                </form:select>
+
+                                                <form:errors path="placa"  cssClass="alert alert-danger"/>
+                                            </div>
+                                             </div>
+                                            
+
+
+
+
+
+                                                <div class="col-md-4">
+                                                    <div class="form-group label-floating">
+                                                        <label class="control-label">Fecha de Ingreso</label>
+                                                        <form:input type="date" path="fecha_ingreso" class="form-control"  />
+                                                        <form:errors path="fecha_ingreso"  cssClass="alert alert-danger" />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <a href="conductor.htm">Regresar a la lista</a> 
-                                        <input type="submit" class="btn btn-primary pull-right" value="Aplicar Cambios" />
-                                        <div class="clearfix"></div>
-                                    </form:form>
+                                            <a href="conductor.htm">Regresar a la lista</a> 
+                                            <input type="submit" class="btn btn-primary pull-right" value="Aplicar Cambios" />
+                                            <div class="clearfix"></div>
+                                        </form:form>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                    Home
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Company
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Portfolio
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    Blog
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                        &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <nav class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Home
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Company
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Portfolio
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Blog
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <p class="copyright pull-right">
+                            &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                        </p>
+                    </div>
+                </footer>
+            </div>
         </div>
-    </div>
 
 </body>
 <!--   Core JS Files   -->

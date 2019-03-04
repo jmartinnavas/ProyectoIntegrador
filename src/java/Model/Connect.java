@@ -18,8 +18,8 @@ public class Connect {
         datos.setDriverClassName("org.postgresql.Driver");
         datos.setUrl("jdbc:postgresql://localhost:5432/proyectointegrador");
         datos.setUsername("postgres");
-        datos.setPassword("federico");
-       //datos.setPassword("manizales11");
+        //datos.setPassword("federico");
+       datos.setPassword("manizales11");
         return datos;
     }
 }
