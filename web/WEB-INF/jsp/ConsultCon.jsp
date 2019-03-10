@@ -227,6 +227,8 @@
                                     </div>
                                 </div>
                             </div>
+                     <a  href="<c:url value="inciCon.htm?id=${conductores.cedula}"></c:url>"> INCIDENCIAS DE ESTE CONDUCTOR </a>
+
                         </div>
                                         
                     </div>

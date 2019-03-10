@@ -38,6 +38,11 @@
                 <prop key="AddCon.htm">conductorController</prop>
                 <prop key="ConsultCon.htm">conductorController</prop>
                 <prop key="EditCon.htm">conductorController</prop>
+                <!--mapping incidencias conductores-->
+                <prop key="inciCon.htm">inciConductorController</prop>
+                <prop key="AddInciCon.htm">inciConductorController</prop>
+                
+                
             </props>
         </property>
     </bean>
@@ -58,5 +63,7 @@
     <bean name="inciVehiculoController" class="Controller.InciVehController" />
 
     <bean name="conductorController" class="Controller.ConductorController" />
+    
+    <bean name="inciConductorController" class="Controller.InciConController" />
 
 </beans>
