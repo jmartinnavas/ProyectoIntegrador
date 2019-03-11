@@ -168,14 +168,14 @@
 
 
                                                         <td>
-                                                            <a  href="<c:url value="ConsultInciVeh.htm?id=${dato.id}"></c:url>">
+                                                            <a  href="<c:url value="ConsultInciCon.htm?id=${dato.id}"></c:url>">
                                                              <i class="material-icons right">zoom_in</i>
                                                             </a>
 
-                                                                <a  href="<c:url value="EditInciVeh.htm?id=${dato.id}"></c:url>">
+                                                                <a  href="<c:url value="EditInciCon.htm?id=${dato.id}"></c:url>">
                                                             <i class="material-icons right">edit</i>
                                                             </a>
-                                                            <a  href="<c:url value="DeleteInciVeh.htm?id=${dato.id}"></c:url>">
+                                                            <a  href="<c:url value="DeleteInciCon.htm?id=${dato.id}"></c:url>">
                                                                 <i class="material-icons right">delete</i>
 
                                                                 </a>

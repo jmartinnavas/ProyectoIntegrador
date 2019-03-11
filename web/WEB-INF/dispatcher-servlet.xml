@@ -41,7 +41,9 @@
                 <!--mapping incidencias conductores-->
                 <prop key="inciCon.htm">inciConductorController</prop>
                 <prop key="AddInciCon.htm">inciConductorController</prop>
-                
+                <prop key="ConsultInciCon.htm">inciConductorController</prop>
+                <prop key="DeleteInciCon.htm">inciConductorController</prop>
+                <prop key="EditInciCon.htm">inciConductorController</prop>
                 
             </props>
         </property>

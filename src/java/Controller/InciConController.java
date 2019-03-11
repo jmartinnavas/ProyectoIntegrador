@@ -135,32 +135,114 @@ public class InciConController {
      * @param cedula cedula del conductor a buscar
      * @return objeto conductor asociado con la cedula buscada
      */
-    private Conductor Selectconductor(String cedula) {
-        Integer.parseInt(cedula);
-        final Conductor con = new Conductor();
-        String query = "SELECT * FROM conductor WHERE cedula=" + cedula + ";";
-        return (Conductor) jdbc.query(query, new ResultSetExtractor<Conductor>() {
+    private InciCon SelectInciConductor(String id) {
+        final InciCon Incicon = new InciCon();
+        String query = "SELECT * FROM incidencias_conductores WHERE id='" + id + "';";
+        return (InciCon) jdbc.query(query, new ResultSetExtractor<InciCon>() {
             @Override
-            public Conductor extractData(ResultSet rs) throws SQLException, DataAccessException {
+            public InciCon extractData(ResultSet rs) throws SQLException, DataAccessException {
                 if (rs.next()) {
-                    con.setCedula(rs.getString("cedula"));
-                    con.setNombre(rs.getString("nombre"));
-                    con.setApellido(rs.getString("apellido"));
-                    con.setTelefono(rs.getString("telefono"));
-                    con.setTelefono_soporte(rs.getString("telefono_soporte"));
-                    con.setEstado(rs.getString("estado"));
-                    con.setFoto(rs.getString("foto"));
-                    con.setPlaca(rs.getString("placa"));
-                    con.setFecha_ingreso(rs.getString("fecha_ingreso"));
+                    Incicon.setId(Integer.parseInt(rs.getString("id")));
+                    Incicon.setFecha_inicio(rs.getString("fecha_inicio"));
+                    Incicon.setFecha_fin(rs.getString("fecha_fin"));
+                    Incicon.setObservacion(rs.getString("observacion"));
+                    Incicon.setCosto(Double.parseDouble(rs.getString("costo")));
+                    Incicon.setDocumento_soporte(rs.getString("documento_soporte"));
+                    Incicon.setTipo_falla(rs.getString("tipo_falla"));
 
                 }
-                return con;
+                return Incicon;
             }
         });
     }
     
     
-    
+       //cargar vista consultar incidencia vehiculo
+    @RequestMapping(method = RequestMethod.GET, value = "ConsultInciCon.htm")
+    public ModelAndView formconsulta(HttpServletRequest request) {
+        ModelAndView mv = new ModelAndView();
+        String id = request.getParameter("id");
+        InciCon ic = this.SelectInciConductor(id);
+        mv.setViewName("ConsultInciCon");
+        mv.addObject("datos", ic);
+        return mv;
+    }
     
 
+    @RequestMapping("DeleteInciCon.htm")
+    public ModelAndView formDelete(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String sql = "DELETE FROM incidencias_conductores WHERE id=?";
+        this.jdbc.update(sql, id);
+        return new ModelAndView("redirect:/conductor.htm");
+    }
+    
+    
+      //EDITAR incidencia CONDUCTOR
+    @RequestMapping(method = RequestMethod.GET, value = "EditInciCon.htm")
+    public ModelAndView formeEdit(HttpServletRequest request) {
+
+        ModelAndView mv = new ModelAndView();
+        String id = request.getParameter("id");
+        InciCon c = this.SelectInciConductor(id);
+        mv.setViewName("EditInciCon");
+        mv.addObject("inciConductores", new InciCon(Integer.parseInt(id), c.getFecha_inicio(), c.getFecha_fin(), c.getObservacion(), 
+                c.getCosto(), c.getDocumento_soporte(), c.getTipo_falla(), c.getConductor()));
+        return mv;
+    }
+    //editar post
+    @RequestMapping(method = RequestMethod.POST, value = "EditInciCon.htm")
+    public ModelAndView form(
+            @RequestParam("documento_soporte") MultipartFile file,
+            @ModelAttribute("inciConductores") InciCon ic,
+            BindingResult result,
+            SessionStatus status,
+            HttpServletRequest request
+    ) {
+
+        ModelAndView mv;
+        String path = request.getServletContext().getRealPath("/PUBLIC") + "/resources/documents/conductores";
+        mv = new ModelAndView();
+        String id = request.getParameter("id");
+        Integer.parseInt(id);
+        System.out.println("mi id else " + id);
+
+        String sql = "UPDATE incidencias_conductores SET "
+                + "fecha_inicio=? ,"
+                + "fecha_fin=?,"
+                + "observacion=?,"
+                + "costo=?,"
+                + "documento_soporte=?,"
+                + "tipo_falla=?"
+                + " WHERE id=?;";
+       this.jdbc.update(sql, ic.getFecha_inicio(), ic.getFecha_fin(), ic.getObservacion(),ic.getCosto(),
+                "/PUBLIC/resources/documents/conductores" + ic.getConductor()+ ic.getFecha_inicio() + "." + file.getContentType().split("/")[1],
+                 ic.getTipo_falla(),Integer.parseInt(id));
+
+         InputStream is;
+        try {
+            System.out.println("subir archivo");
+
+            is = file.getInputStream();
+
+            File f = new File(path + ic.getConductor() + ic.getFecha_inicio() + "." + file.getContentType().split("/")[1]);
+            FileOutputStream ous = new FileOutputStream(f);
+            int dato = is.read();
+
+            while (dato != -1) {
+                System.out.println("subiendo");
+
+                ous.write(dato);
+                dato = is.read();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ConductorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                            System.out.println("vista inciveh");
+
+        mv = new ModelAndView("redirect:/conductor.htm");
+
+        return mv;
+    }
+    
 }
