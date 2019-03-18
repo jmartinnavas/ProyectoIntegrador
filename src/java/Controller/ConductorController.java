@@ -34,12 +34,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.web.multipart.MultipartFile;
+@Controller
 
 /**
  *
  * @author JMartinNavas
  */
-@Controller
 public class ConductorController {
 
     private JdbcTemplate jdbc;

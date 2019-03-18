@@ -48,7 +48,8 @@
                 <prop key="entrega.htm">entregaController</prop>
                 <prop key="AddEntrega.htm">entregaController</prop>
                 <prop key="EditEntrega.htm">entregaController</prop>
-
+                <!--mapping incidencias reportes-->
+                <prop key="balanceGeneral.htm">reportesController</prop>
 
                 
             </props>
@@ -75,5 +76,8 @@
     <bean name="inciConductorController" class="Controller.InciConController" />
 
     <bean name="entregaController" class="Controller.EntregaController" />
+    
+    <bean name="reportesController" class="Controller.ReportesController" />
+
 
 </beans>
