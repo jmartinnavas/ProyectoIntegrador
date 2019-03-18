@@ -48,7 +48,10 @@
                 <prop key="entrega.htm">entregaController</prop>
                 <prop key="AddEntrega.htm">entregaController</prop>
                 <prop key="EditEntrega.htm">entregaController</prop>
-
+                 <!--mapping ahorros conductores-->
+                 <prop key="ahorro.htm">ahorroController</prop>
+                 <prop key="AddAhorro.htm">ahorroController</prop>
+                  <prop key="DeleteAhorro.htm">ahorroController</prop>
 
                 
             </props>
@@ -75,5 +78,7 @@
     <bean name="inciConductorController" class="Controller.InciConController" />
 
     <bean name="entregaController" class="Controller.EntregaController" />
+    
+    <bean name="ahorroController" class="Controller.AhorroController" />
 
 </beans>

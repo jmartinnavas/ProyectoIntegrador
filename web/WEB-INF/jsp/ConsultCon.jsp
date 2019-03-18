@@ -226,11 +226,13 @@
                                         <h4 class="card-title"></h4>
                                     </div>
                                 </div>
-                            </div>
                             <a  href="<c:url value="inciCon.htm?id=${conductores.cedula}"></c:url>"> INCIDENCIAS DE ESTE CONDUCTOR </a>
                                         <br>
-                        <a  href="<c:url value="entrega.htm?cedula=${conductores.cedula}"></c:url>"> ENTREGAS DE ESTE CONDUCTOR </a>
-                        </div>
+                            <a  href="<c:url value="entrega.htm?cedula=${conductores.cedula}"></c:url>"> ENTREGAS DE ESTE CONDUCTOR </a>
+                                        <br>
+                             <a  href="<c:url value="ahorro.htm?cedula=${conductores.cedula}"></c:url>"> AHORROS DE ESTE CONDUCTOR </a>
+                            </div>
+                            </div>
 
                     </div>
 
