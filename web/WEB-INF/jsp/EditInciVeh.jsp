@@ -1,8 +1,9 @@
 <%-- 
-    Document   : ConsultCon
-    Created on : 26/02/2019, 10:18:26 PM
-    Author     : JMartinNavas
+    Document   : EditInciVeh
+    Created on : 15/03/2019, 14:46:35 PM
+    Author     : fegobe
 --%>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,7 +11,7 @@
 <html>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Consultar Conductor ${conductor.cedula}</title>
+    <title>Editar Incidencia</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Bootstrap core CSS     -->
@@ -50,7 +51,7 @@
                                 <p>Dashboard</p>
                             </a>
                         </li>              
-                        <li>
+                        <li >
                             <a href=<c:url value="vehiculo.htm"></c:url>>
                                 <i class="material-icons">content_paste</i>
                                 <p>Modulo Vehiculos</p>
@@ -144,96 +145,86 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-header" data-background-color="red">
-                                    <h4 class="title">Consultar Conductor</h4>
+                                    <h4 class="title">Editar Incidencias Del Vehiculo</h4>
                                     <p class="category">Revision Detallada</p>
                                 </div>
+                                
                                 <div class="card-content">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Cedula</label>
-                                                <input class="form-control" value="<c:out value="${conductores.cedula}"/>" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Nombre</label>
-                                                <input class="form-control" value="<c:out value="${conductores.nombre}"/>" disabled="disabled" />
-                                            </div>
+                      <form:form method="post" commandName="inciVehiculos" enctype="multipart/form-data" >
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Fecha de Inicio</label>
+                                            <form:input type="date" path="fecha_inicio" class="form-control"  />
+                                            <form:errors path="fecha_inicio"  cssClass="alert alert-danger" />
                                         </div>
                                     </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Apellido</label>
-                                                <input class="form-control" value="<c:out value="${conductores.apellido}"/>" disabled="disabled" />
-                                            </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Fecha de Fin</label>
+                                            <form:input type="date" path="fecha_fin" class="form-control" />
+                                            <form:errors path="fecha_fin"  cssClass="alert alert-danger" />
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Telefono</label>
-                                                <input  class="form-control" value="<c:out value="${conductores.telefono}"/>" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Telefono de Soporte</label>
-                                                <input class="form-control" value="<c:out value="${conductores.telefono_soporte}"/>" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Estado del Conductor</label>
-                                                <input class="form-control" value="<c:out value="${conductores.estado}"/>" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Fecha de Ingreso</label>
-                                                <input class="form-control" value="<c:out value="${conductores.fecha_ingreso}"/>" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Vehiculo Asociado</label>
-                                                <input class="form-control" value="<c:out value="${conductores.placa}"/>" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                    </div>       
-
-                                    <a href="conductor.htm">Regresar a la lista</a>           
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="card card-profile">
-                                <div class="card-avatar">
-                                    <a href="#pablo">
-                                        <img class="img" src="<c:url value="${conductores.foto}"></c:url>" />
-                                        </a>
-                                    </div>
-
-                                    <div class="content">
-                                        <h6 class="category text-gray">Fotografia del Conductor</h6>
-                                        <h4 class="card-title"></h4>
                                     </div>
                                 </div>
-                            </div>
-                            <a  href="<c:url value="inciCon.htm?id=${conductores.cedula}"></c:url>"> INCIDENCIAS DE ESTE CONDUCTOR </a>
-                                        <br>
-                        <a  href="<c:url value="entrega.htm?cedula=${conductores.cedula}"></c:url>"> ENTREGAS DE ESTE CONDUCTOR </a>
-                        </div>
 
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Observacion</label>
+                                            <form:input path="observacion" class="form-control" />
+                                            <form:errors path="observacion"  cssClass="alert alert-danger" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Costo</label>
+                                            <form:input type="number" path="costo" class="form-control" />
+                                            <form:errors path="costo"  cssClass="alert alert-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Documento de soporte</label>
+                                            <form:input type="file" path="documento_soporte" class="form-control" />
+                                            <form:errors path="documento_soporte"  cssClass="alert alert-danger" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Tipo de falla</label>
+                                            <form:select path="tipo_falla" class="form-control">
+                                                <form:option value="NONE" label="--- SELECCIONAR ---"/>
+                                                <form:option value="Mecanica" label="Mecanica"/>
+                                                <form:option value="Mantenimiento" label="Mantenimiento"/>
+                                                <form:option value="Accidente" label="Accidente"/>
+                                                <form:option value="Sin conducto" label="Inactivo"/>
+                                                <form:option value="Otros" label="Inactivo"/>
+                                            </form:select>
+                                            <form:errors path="tipo_falla"  cssClass="alert alert-danger" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group label-floating">
+                                        <label class="control-label">Vehiculo</label>
+                                        <form:input  path="vehiculo" class="form-control" value="${placa}" disabled="enable" />
+                                        <form:errors path="vehiculo"  cssClass="alert alert-danger" />
+                                    </div>
+                                </div>
+
+                                <input type="submit" class="btn btn-primary pull-right" value="Crear Registro" />
+                                <div class="clearfix"></div>
+                            </form:form>
+                                            
+                        </div>
+     
+
+                        </div>
                     </div>
-
                 </div>
 
                 <footer class="footer">

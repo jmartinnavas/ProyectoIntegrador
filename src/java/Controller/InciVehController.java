@@ -8,6 +8,7 @@ package Controller;
 import java.io.File;
 import java.io.FileOutputStream;
 import Model.Connect;
+import Model.InciCon;
 import Model.InciVeh;
 import Model.Vehiculo;
 import java.io.IOException;
@@ -75,7 +76,7 @@ public class InciVehController {
         return mv;
     }
 
-    //añadir vehiculo
+    //añadir incidencia vehiculo
     @RequestMapping(method = RequestMethod.GET, value = "AddInciVeh.htm")
     public ModelAndView formAdd(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
@@ -129,11 +130,90 @@ public class InciVehController {
         } catch (IOException ex) {
             Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-                            System.out.println("vista inciveh");
+        System.out.println("vista inciveh");
 
-        mv = new ModelAndView("redirect:/inciVeh.htm?id="+ iv.getVehiculo());
+        mv = new ModelAndView("redirect:/inciVeh.htm?id=" + iv.getVehiculo());
 
         return mv;
+    }
+
+    //EDITAR incidencia Vehiculo
+    @RequestMapping(method = RequestMethod.GET, value = "EditInciVeh.htm")
+    public ModelAndView formeEdit(HttpServletRequest request) {
+
+        ModelAndView mv = new ModelAndView();
+        String id = request.getParameter("id");
+        InciVeh iv = this.SelectIncivehiculo(id);
+        mv.setViewName("EditInciVeh");
+        mv.addObject("inciVehiculos", new InciVeh(Integer.parseInt(id), iv.getFecha_inicio(), iv.getFecha_fin(), iv.getObservacion(),
+                iv.getCosto(), iv.getDocumento_soporte(), iv.getTipo_falla(), iv.getVehiculo()));
+        mv.addObject("placa", iv.getVehiculo());
+
+        return mv;
+    }
+
+    //editar post
+    @RequestMapping(method = RequestMethod.POST, value = "EditInciVeh.htm")
+    public ModelAndView form(
+            @RequestParam("documento_soporte") MultipartFile file,
+            @ModelAttribute("inciVehiculos") InciVeh iv,
+            BindingResult result,
+            SessionStatus status,
+            HttpServletRequest request
+    ) {
+
+        ModelAndView mv;
+        String path = request.getServletContext().getRealPath("/PUBLIC") + "/resources/documents/vehiculos";
+        mv = new ModelAndView();
+        String id = request.getParameter("id");
+        Integer.parseInt(id);
+
+        String sql = "UPDATE incidencias_vehiculos SET "
+                + "fecha_inicio=? ,"
+                + "fecha_fin=?,"
+                + "observacion=?,"
+                + "costo=?,"
+                + "documento_soporte=?,"
+                + "tipo_falla=?"
+                + " WHERE id=?;";
+        this.jdbc.update(sql, iv.getFecha_inicio(), iv.getFecha_fin(), iv.getObservacion(), iv.getCosto(),
+                "/PUBLIC/resources/documents/vehiculos" + iv.getVehiculo() + iv.getFecha_inicio() + "." + file.getContentType().split("/")[1],
+                iv.getTipo_falla(), Integer.parseInt(id));
+
+        InputStream is;
+        try {
+            System.out.println("subir archivo");
+
+            is = file.getInputStream();
+
+            File f = new File(path + iv.getVehiculo() + iv.getFecha_inicio() + "." + file.getContentType().split("/")[1]);
+            FileOutputStream ous = new FileOutputStream(f);
+            int dato = is.read();
+
+            while (dato != -1) {
+                System.out.println("subiendo");
+
+                ous.write(dato);
+                dato = is.read();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(ConductorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        mv = new ModelAndView("redirect:/inciVeh.htm?id=" + iv.getVehiculo());
+
+        return mv;
+    }
+
+    //Eliminar incidencia Vehicuo
+    @RequestMapping("DeleteInciVeh.htm")
+    public ModelAndView formDelete(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String sql = "DELETE FROM incidencias_vehiculos WHERE id=?";
+        this.jdbc.update(sql, id);
+        String placa = SelectIncivehiculo(request.getParameter("id")).getVehiculo();
+        return new ModelAndView("redirect:/inciVeh.htm?id=" + placa);
+
     }
 
     /**
@@ -156,7 +236,7 @@ public class InciVehController {
                     Inciveh.setCosto(Double.parseDouble(rs.getString("costo")));
                     Inciveh.setDocumento_soporte(rs.getString("documento_soporte"));
                     Inciveh.setTipo_falla(rs.getString("tipo_falla"));
-
+                    Inciveh.setVehiculo(rs.getString("vehiculo"));
                 }
                 return Inciveh;
             }

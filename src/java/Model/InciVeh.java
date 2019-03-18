@@ -24,6 +24,21 @@ public class InciVeh {
     private String tipo_falla;
     private String vehiculo;
 
+    public InciVeh(int id, Date fecha_inicio, Date fecha_fin, String observacion, Double costo, String documento_soporte, String tipo_falla, String vehiculo) {
+        this.id = id;
+        this.fecha_inicio = fecha_inicio;
+        this.fecha_fin = fecha_fin;
+        this.observacion = observacion;
+        this.costo = costo;
+        this.documento_soporte = documento_soporte;
+        this.tipo_falla = tipo_falla;
+        this.vehiculo = vehiculo;
+    }
+
+    public InciVeh() {
+    }
+
+       
     public int getId() {
         return id;
     }
