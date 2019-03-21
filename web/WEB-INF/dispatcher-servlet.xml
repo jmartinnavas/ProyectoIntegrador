@@ -48,6 +48,12 @@
                 <prop key="entrega.htm">entregaController</prop>
                 <prop key="AddEntrega.htm">entregaController</prop>
                 <prop key="EditEntrega.htm">entregaController</prop>
+                
+                <!--mapping incidencias reportes-->
+                <prop key="ahorro.htm">ahorroController</prop>
+                <prop key="AddAhorro.htm">ahorroController</prop>
+                <prop key="DeleteAhorro.htm">ahorroController</prop>
+
                 <!--mapping incidencias reportes-->
                 <prop key="balanceGeneral.htm">reportesController</prop>
 
@@ -78,6 +84,8 @@
     <bean name="entregaController" class="Controller.EntregaController" />
     
     <bean name="reportesController" class="Controller.ReportesController" />
+    
+    <bean name="ahorroController" class="Controller.AhorroController" />
 
 
 </beans>
