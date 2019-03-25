@@ -53,6 +53,10 @@
                 <prop key="ahorro.htm">ahorroController</prop>
                 <prop key="AddAhorro.htm">ahorroController</prop>
                 <prop key="DeleteAhorro.htm">ahorroController</prop>
+                <!--mapping Ahorros-->
+                <prop key="ahorro.htm">ahorroController</prop>
+                <prop key="AddAhorro.htm">ahorroController</prop>
+                <prop key="DeleteAhorro.htm">ahorroController</prop>
 
                 <!--mapping Reportes-->
                 <prop key="balanceGeneral.htm">reportesController</prop>
