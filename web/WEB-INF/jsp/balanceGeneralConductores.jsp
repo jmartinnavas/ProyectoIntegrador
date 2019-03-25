@@ -133,52 +133,51 @@
                 </div>
             </nav>
 
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="card">
-                                <div class="card-header" data-background-color="red">
-                                    <h4 class="title">Consultar Reporte general</h4>
-                                    <p class="category">Revision Detallada</p>
-                                </div>
-                                <div class="card-content">
-                                    <c:forEach items="${datos}" var="dato">
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">${dato.nombre}</label>
-                                                    <input class="form-control" value="<c:out value="${dato.total}"/>" disabled="disabled" />
-                                                </div>
-                                            </div>
-
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header" data-background-color="orange">
+                                        <h4 class="title">balance general conductores</h4>
+                                        <p class="category">Informacion General del modulo</p>
+                       
                                         </div>
-                                    </c:forEach>
-                                    <div class="col-md-12">
-                                        <label class="control-label">Balance</label>
+                                        <div class="card-content table-responsive">
+                                            <table class="table">
+                                                <thead class="text-primary">
+                                                <th data-field="placa"  >Nombre</th>
+                                                <th data-field="marca" >Balance</th>
+                                              
 
-                                        <c:choose>
-                                            <c:when test="${suma<0}">
-                                                <input style="color: red" class="form-control" value="<c:out value="${suma}"/>" disabled="disabled" />
+                                                </thead>
+                                                <tbody>
+                                                <c:forEach items="${datos}" var="dato">
+                                                    <tr style="background-color:#FFFF;">
+                                                        <td><c:out value="${dato.nombre}"/></td>
+                                                        <td><c:out value="${dato.balance}"/></td>
+                              
 
-                                            </c:when>
-                                            <c:otherwise>
+                                                        <td>
+                                                            <a class="btn btn-warning" href="<c:url value="ConsultVeh.htm?id=${dato.placa}"></c:url>">Reporte 1</a>
 
-                                                <input style="color: green" class="form-control" value="<c:out value="${suma}"/>" disabled="disabled" />
-                                                </c:otherwise>
-                                            </c:choose>
+                                                                <a class="btn btn-warning"  href="<c:url value="EditVeh.htm?id=${dato.placa}"></c:url>">Reporte 2</a>
+                                                            <a class="btn btn-warning"  href="<c:url value="DeleteVeh.htm?id=${dato.placa}"></c:url>">Reporte 3
 
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                </c:forEach>
+
+
+                                            </tbody>
+                                        </table>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
-            </div>
 
             <footer class="footer">
                 <div class="container-fluid">

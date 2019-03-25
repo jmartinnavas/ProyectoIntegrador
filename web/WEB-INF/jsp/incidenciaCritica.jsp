@@ -143,31 +143,27 @@
                                     <p class="category">Revision Detallada</p>
                                 </div>
                                 <div class="card-content">
-                                    <c:forEach items="${datos}" var="dato">
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">${dato.nombre}</label>
-                                                    <input class="form-control" value="<c:out value="${dato.total}"/>" disabled="disabled" />
-                                                </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Mayor Incidencia De vehiculos</label>
+                                                <input class="form-control" value="<c:out value="${inciVeh}"/>" disabled="disabled" />
                                             </div>
-
+                                            <div class="form-group label-floating">
+ 
+                                                <label class="control-label">Mayor Incidencia De Conductores</label>
+                                                <input class="form-control" value="<c:out value="${inciCon}"/>" disabled="disabled" />
+                                            </div>
                                         </div>
-                                    </c:forEach>
-                                    <div class="col-md-12">
-                                        <label class="control-label">Balance</label>
+                                        <div class="col-md-4">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">mayor Incidencia</label>
+                                                <input class="form-control" value="<c:out value="${maxInci}"/>" disabled="disabled" />
 
-                                        <c:choose>
-                                            <c:when test="${suma<0}">
-                                                <input style="color: red" class="form-control" value="<c:out value="${suma}"/>" disabled="disabled" />
 
-                                            </c:when>
-                                            <c:otherwise>
 
-                                                <input style="color: green" class="form-control" value="<c:out value="${suma}"/>" disabled="disabled" />
-                                                </c:otherwise>
-                                            </c:choose>
+                                            </div>
+                                        </div>
 
                                     </div>
 
@@ -227,3 +223,4 @@
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src=<c:url value="/PUBLIC/assets/js/demo.js"></c:url>></script>
 </html>
+

@@ -44,18 +44,20 @@
                 <prop key="ConsultInciCon.htm">inciConductorController</prop>
                 <prop key="DeleteInciCon.htm">inciConductorController</prop>
                 <prop key="EditInciCon.htm">inciConductorController</prop>
-                <!--mapping incidencias conductores-->
+                <!--mapping Entregas-->
                 <prop key="entrega.htm">entregaController</prop>
                 <prop key="AddEntrega.htm">entregaController</prop>
                 <prop key="EditEntrega.htm">entregaController</prop>
                 
-                <!--mapping incidencias reportes-->
+                <!--mapping Ahorros-->
                 <prop key="ahorro.htm">ahorroController</prop>
                 <prop key="AddAhorro.htm">ahorroController</prop>
                 <prop key="DeleteAhorro.htm">ahorroController</prop>
 
-                <!--mapping incidencias reportes-->
+                <!--mapping Reportes-->
                 <prop key="balanceGeneral.htm">reportesController</prop>
+                <prop key="balanceGeneralConductores.htm">reportesController</prop>
+                <prop key="incidenciaCritica.htm">reportesController</prop>
 
                 
             </props>
@@ -83,9 +85,10 @@
 
     <bean name="entregaController" class="Controller.EntregaController" />
     
+    <bean name="ahorroController" class="Controller.AhorroController" />
+    
     <bean name="reportesController" class="Controller.ReportesController" />
     
-    <bean name="ahorroController" class="Controller.AhorroController" />
 
 
 </beans>
