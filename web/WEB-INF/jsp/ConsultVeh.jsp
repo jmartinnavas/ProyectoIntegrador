@@ -204,9 +204,11 @@
                                         <h4 class="card-title"></h4>
                                     </div>
                                 </div>
-                            </div>
-                            <a  href="<c:url value="inciVeh.htm?id=${vehiculos.placa}"></c:url>"> INCIDENCIAS DE ESTE VEHICULO </a>
+                                         <a type="submit" class="btn btn-danger"  href="<c:url value="inciVeh.htm?id=${vehiculos.placa}"></c:url>"> INCIDENCIAS DE ESTE VEHICULO </a>
 
+                            </div>
+                                        
+                           
                         </div>
                     </div>
                 </div>

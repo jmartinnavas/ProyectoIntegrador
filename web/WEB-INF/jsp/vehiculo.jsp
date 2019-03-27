@@ -34,7 +34,7 @@
 
             <div class="wrapper">
 
-                <div class="sidebar" data-color="orange">
+                <div class="sidebar" data-color="red">
                     <!--
                     Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
     
@@ -101,7 +101,7 @@
                     </div>
                 </div>
 
-                <div class="main-panel" data-color="orange">
+                <div class="main-panel" data-color="red">
                     <nav class="navbar navbar-transparent navbar-absolute">
                         <div class="container-fluid">
                             <div class="navbar-header">
@@ -136,6 +136,7 @@
                             </ul>
                         </div>
                     </div>
+                
                 </nav>
 
                 <div class="content">
@@ -143,7 +144,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header" data-background-color="orange">
+                                    <div class="card-header" data-background-color="red">
                                         <h4 class="title">Vehiculos</h4>
                                         <p class="category">Informacion General del modulo</p>
                                         <a class="btn-floating" href=<c:url value="AddVeh.htm"></c:url>><i class="material-icons">add</i></a>
@@ -170,11 +171,15 @@
                                                         <td><c:out value="${dato.fecha_soat}"/></td>
 
                                                         <td>
-                                                            <a class="btn btn-warning" href="<c:url value="ConsultVeh.htm?id=${dato.placa}"></c:url>">Consultar</a>
+                                                            <a  href="<c:url value="ConsultVeh.htm?id=${dato.placa}"></c:url>">
+                                                                    <i class="material-icons right">zoom_in</i>
+                                                                </a>
 
-                                                                <a class="btn btn-warning"  href="<c:url value="EditVeh.htm?id=${dato.placa}"></c:url>">Modificar</a>
-                                                            <a class="btn btn-warning"  href="<c:url value="DeleteVeh.htm?id=${dato.placa}"></c:url>">Eliminar
-
+                                                                <a  href="<c:url value="EditVeh.htm?id=${dato.placa}"></c:url>">
+                                                                    <i class="material-icons right">edit</i>
+                                                                </a>
+                                                                <a  href="<c:url value="DeleteVeh.htm?id=${dato.placa}"></c:url>">
+                                                                    <i class="material-icons right">delete</i>
                                                                 </a>
                                                             </td>
                                                         </tr>

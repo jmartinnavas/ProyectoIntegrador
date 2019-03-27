@@ -71,7 +71,7 @@
                                     <p>Modulo Incidencias</p>
                                 </a>
                             </li>
-<li>
+                            <li>
                                 <a href=<c:url value="egreso.htm"></c:url>>
                                     <i class="material-icons">location_on</i>
                                     <p>Modulo Egresos</p>
@@ -88,7 +88,7 @@
                 </div>
 
                 <div class="main-panel">
-                                                        <nav class="navbar navbar-transparent navbar-absolute">
+                    <nav class="navbar navbar-transparent navbar-absolute">
                         <div class="container-fluid">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle" data-toggle="collapse">
@@ -134,15 +134,15 @@
                         </div>
                     </div>
                 </nav>
-                    <div class="content">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="card">
-                                        <div class="card-header" data-background-color="red">
-                                            <h4 class="title">Historial de Conductores</h4>
-                                            <p class="category">Informacion General del modulo</p>
-                                            <a class="btn-floating" href=<c:url value="AddCon.htm"></c:url>><i class="material-icons">add</i></a>
+                <div class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header" data-background-color="red">
+                                        <h4 class="title">Historial de Conductores</h4>
+                                        <p class="category">Informacion General del modulo</p>
+                                        <a class="btn-floating" href=<c:url value="AddCon.htm"></c:url>><i class="material-icons">add</i></a>
                                         </div>
                                         <div class="card-content table-responsive">
                                             <table class="table">
@@ -162,10 +162,10 @@
                                                         <td><c:out value="${dato.nombre}"/></td>
                                                         <td><c:out value="${dato.apellido}"/></td>
                                                         <td><c:out value="${dato.telefono}"/></td>
-                                                    
+
                                                         <td><c:out value="${dato.fecha_ingreso}"/></td>
                                                         <td><c:out value="${dato.estado}"/></td>
-                                                        
+
                                                         <td>
                                                             <a href="<c:url value="ConsultCon.htm?id=${dato.cedula}"></c:url>">
                                                                     <i class="material-icons right">zoom_in</i>
