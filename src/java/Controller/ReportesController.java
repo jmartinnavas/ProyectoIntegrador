@@ -115,4 +115,43 @@ public class ReportesController {
 
         return mv;
     }
+    
+    /*
+    CREATE OR REPLACE FUNCTION funcion_area_perimetro () RETURNS trigger AS
+$$
+BEGIN
+		vehiculo integer;
+        select placa into vehiculo from conductor where cedula= new.conductor;
+        
+		insert into ingresos_vehiculos(valor,vehiculo,fecha) values
+        (NEW.VALOR, vehiculo, NEW.FECHA_ENTREGA );
+       RETURN NEW;
+END;
+    
+    */
+        @RequestMapping(method = RequestMethod.GET, value = "balanceGeneralVehiculos.htm")
+    public ModelAndView generalVehiculos() {
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("balanceGeneralVehiculos");
+        String SQL = "select 'ingresos por entregas' as nombre ,sum (e.valor) as total from entregas e union"
+                + " select 'egresos por incidencias de vehiculos' as nombre ,sum (iv.costo) as total from incidencias_vehiculos iv union"
+                + " select 'egresos por incidencias de conductores' as nombre ,sum (ic.costo) as total from incidencias_conductores ic";
+        List l;
+        l = jdbc.queryForList(SQL);
+        Double suma = 0.0;
+        System.out.println(l);
+        for (int i = 0; i < l.size(); i++) {
+            Map<String, Object> m = (Map<String, Object>) l.get(i);
+            String tipo = m.get("nombre").toString();
+            if (tipo.contains("egresos")) {
+                suma -= Double.parseDouble(m.get("total").toString());
+            } else if (tipo.contains("ingresos")) {
+                suma += Double.parseDouble(m.get("total").toString());
+            }
+        }
+        mv.addObject("suma", suma);
+        mv.addObject("datos", l);
+        return mv;
+    }
 }
