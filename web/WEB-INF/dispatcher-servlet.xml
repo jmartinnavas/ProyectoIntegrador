@@ -72,9 +72,8 @@
     <!--
     The index controller.
     -->
-    <bean name="indexController"
-          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
-          p:viewName="index" />
+    <bean name="indexController" class="Controller.IndexController" />
+    
     <bean name="vehiculoController" class="Controller.VehiculoController" />
     
     <bean name="inciVehiculoController" class="Controller.InciVehController" />

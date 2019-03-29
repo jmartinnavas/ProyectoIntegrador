@@ -28,25 +28,36 @@ public class IndexController {
         this.jdbc = new JdbcTemplate(con.GetConnect());
 
     }
-    
+
     // cargar vista principal de index
-    @RequestMapping("index.htm")
+    @RequestMapping(method = RequestMethod.GET, value = "index.htm")
     public ModelAndView form(HttpServletRequest request) {
-        
-        System.out.println("carga de datos");
+
         ModelAndView mv = new ModelAndView();
         mv.setViewName("index");
         String SQL = "select ((select sum(costo) from incidencias_vehiculos) + (select sum(costo) from incidencias_conductores )) AS totalGastos;";
-       
+        String SQL2 = "select count(cedula) as activos , (select count(cedula) from conductor) as total from conductor where estado = 'activo' ; ";
+        String SQL3 = "select count(placa) as vencidos , (select count(placa) from vehiculo) as totalc  from vehiculo where current_date > fecha_soat ;  ";
+        String SQL4 = "select sum(valor) as totaldia   from entregas where current_date = fecha_entrega ; ";
+        String SQL5 = "select cedula , nombre , apellido , telefono from conductor where estado='activo' ; ";
         List l;
         l = this.jdbc.queryForList(SQL);
-        System.out.println(l.toString());
+        List l2;
+        l2 = this.jdbc.queryForList(SQL2);
+        List l3;
+        l3 = this.jdbc.queryForList(SQL3);
+        List l4;
+        l4 = this.jdbc.queryForList(SQL4);
+        List l5;
+        l5 = this.jdbc.queryForList(SQL5);
+
         mv.addObject("datos", l);
-       
+        mv.addObject("datos2", l2);
+        mv.addObject("datos3", l3);
+        mv.addObject("datos4", l4);
+        mv.addObject("datos5", l5);
+
         return mv;
     }
-
-   
-    
 
 }
