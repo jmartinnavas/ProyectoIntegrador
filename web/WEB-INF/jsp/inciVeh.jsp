@@ -56,36 +56,21 @@
 
                                 </a>
                             </li>
-                            <li>
-                                <a href="user.html">
-                                    <i class="material-icons">person</i>
-                                    <p>Perfil del Administrador</p>
-                                </a>
-                            </li>
+                           
                             <li class="active">
                                 <a href=<c:url value="vehiculo.htm"></c:url>>
                                     <i class="material-icons">content_paste</i>
                                     <p>Modulo Vehiculos</p>
                                 </a>
                             </li>
-                            <li >
-                                <a href=<c:url value="entrega.htm"></c:url>>
-                                    <i class="material-icons">library_books</i>
-                                    <p>Modulo Entrega</p>
-                                </a>
-                            </li>
+                           
                             <li>
                                 <a href="<c:url value="conductor.htm"></c:url>">
                                     <i class="material-icons">bubble_chart</i>
                                     <p>Modulo Conductores</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="maps.html">
-                                    <i class="material-icons">location_on</i>
-                                    <p>Modulo Incidencias</p>
-                                </a>
-                            </li>
+                            
                             <li>
                                 <a href="notifications.html">
                                     <i class="material-icons text-gray">notifications</i>
@@ -102,7 +87,7 @@
                     </div>
                 </div>
 
-                <div class="main-panel" data-color="orange">
+                <div class="main-panel" data-color="red">
                     <nav class="navbar navbar-transparent navbar-absolute">
                         <div class="container-fluid">
                             <div class="navbar-header">
@@ -144,7 +129,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header" data-background-color="orange">
+                                    <div class="card-header" data-background-color="red">
                                         <h4 class="title">Incidencias de Vehiculos</h4>
                                         <p class="category">Informacion General del modulo</p>
                                         <a class="btn-floating" href=<c:url value="AddInciVeh.htm?placa=${placa}"></c:url>><i class="material-icons">add</i></a>

@@ -56,12 +56,7 @@
 
                                 </a>
                             </li>
-                            <li>
-                                <a href="user.html">
-                                    <i class="material-icons">person</i>
-                                    <p>Perfil del Administrador</p>
-                                </a>
-                            </li>
+                            
                             <li >
                                 <a href=<c:url value="vehiculo.htm"></c:url>>
                                     <i class="material-icons">content_paste</i>
@@ -80,18 +75,8 @@
                                     <p>Modulo Conductores</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="maps.html">
-                                    <i class="material-icons">location_on</i>
-                                    <p>Modulo Incidencias</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="notifications.html">
-                                    <i class="material-icons text-gray">notifications</i>
-                                    <p>Modulo Reportes</p>
-                                </a>
-                            </li>
+                           
+                           
                             <li class="active-pro">
                                 <a href="upgrade.html">
                                     <i class="material-icons">unarchive</i>

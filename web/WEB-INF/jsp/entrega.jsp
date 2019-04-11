@@ -56,36 +56,21 @@
 
                                 </a>
                             </li>
-                            <li>
-                                <a href="user.html">
-                                    <i class="material-icons">person</i>
-                                    <p>Perfil del Administrador</p>
-                                </a>
-                            </li>
+                          
                             <li >
                                 <a href=<c:url value="vehiculo.htm"></c:url>>
                                     <i class="material-icons">content_paste</i>
                                     <p>Modulo Vehiculos</p>
                                 </a>
                             </li>
-                            <li >
-                                <a href=<c:url value="entrega.htm"></c:url>>
-                                    <i class="material-icons">library_books</i>
-                                    <p>Modulo Entrega</p>
-                                </a>
-                            </li>
+                           
                             <li class="active">
                                 <a href="<c:url value="conductor.htm"></c:url>">
                                     <i class="material-icons">bubble_chart</i>
                                     <p>Modulo Conductores</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="maps.html">
-                                    <i class="material-icons">location_on</i>
-                                    <p>Modulo Incidencias</p>
-                                </a>
-                            </li>
+                          
                             <li>
                                 <a href="notifications.html">
                                     <i class="material-icons text-gray">notifications</i>

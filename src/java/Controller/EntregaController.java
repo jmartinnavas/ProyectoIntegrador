@@ -41,7 +41,7 @@ public class EntregaController {
         cc = new ConductorController();
     }
 
-    // cargar vista principal de incidencia conductor
+    // cargar vista principal de entrega conductor
     @RequestMapping("entrega.htm")
     public ModelAndView form(HttpServletRequest request) {
         String cedula = request.getParameter("cedula");
@@ -57,7 +57,7 @@ public class EntregaController {
         return mv;
     }
 
-    //añadir Entrega
+    //añadir Entrega con base en la cedular que trae la ventana
     @RequestMapping(method = RequestMethod.GET, value = "AddEntrega.htm")
     public ModelAndView formAdd(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
@@ -83,7 +83,8 @@ public class EntregaController {
         return mv;
     }
 
-    //editar post
+    //editar entrega  post
+    //envia los cambios realizados a la base de datos y se actualiza 
     @RequestMapping(method = RequestMethod.POST, value = "EditEntrega.htm")
     public ModelAndView form(
             @ModelAttribute("Entregas") Entrega e,
@@ -108,6 +109,8 @@ public class EntregaController {
         return mv;
     }
 
+    //añadir entrega metodo post
+    //los datos del formulario se envian a la base de datos y se añade la nueva entrega 
     @RequestMapping(method = RequestMethod.POST, value = "AddEntrega.htm")
     public ModelAndView formAddPost(
             @ModelAttribute("Entregas") Entrega e,

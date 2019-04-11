@@ -57,24 +57,14 @@
                                 <p>Modulo Vehiculos</p>
                             </a>
                         </li>
-                        <li>
-                            <a href=<c:url value="entrega.htm"></c:url>>
-                                <i class="material-icons">library_books</i>
-                                <p>Modulo Entrega</p>
-                            </a>
-                        </li>
+                        
                         <li  >
                             <a href="<c:url value="conductor.htm"></c:url>">
                                 <i class="material-icons">bubble_chart</i>
                                 <p>Modulo Conductores</p>
                             </a>
                         </li>
-                        <li>
-                            <a href=<c:url value="regfalla.htm"></c:url>>
-                                <i class="material-icons">location_on</i>
-                                <p>Modulo Incidencias</p>
-                            </a>
-                        </li>
+                       
                         <li class="active">
                             <a href=<c:url value="reportes.htm"></c:url>>
                                 <i class="material-icons">location_on</i>

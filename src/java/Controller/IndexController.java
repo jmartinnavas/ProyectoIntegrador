@@ -30,6 +30,7 @@ public class IndexController {
     }
 
     // cargar vista principal de index
+    //se encarga de mostrar los datos que se ven en  la vista princiopal 
     @RequestMapping(method = RequestMethod.GET, value = "index.htm")
     public ModelAndView form(HttpServletRequest request) {
 

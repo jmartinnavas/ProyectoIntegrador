@@ -51,6 +51,7 @@ public class ConductorController {
     }
 
     //EDITAR CONDUCTOR
+    // la vista se carga con los datos del conductor que vamos a editar
     @RequestMapping(method = RequestMethod.GET, value = "EditCon.htm")
     public ModelAndView formeEdit(HttpServletRequest request) {
 
@@ -64,6 +65,8 @@ public class ConductorController {
     }
 
     //editar post
+    // al hacer click en enviar el formulario con las modificaciones,
+    // el metodo post lleva los nuevos datos a la bd y guarda la informacion
     @RequestMapping(method = RequestMethod.POST, value = "EditCon.htm")
     public ModelAndView form(
             @RequestParam("foto") MultipartFile file,
@@ -130,6 +133,7 @@ public class ConductorController {
     }
 
     // cargar vista principal de conductor
+    //en la vista se muestran todos los conductores que hay en la empresa 
     @RequestMapping("conductor.htm")
     public ModelAndView form() {
 
@@ -143,6 +147,7 @@ public class ConductorController {
         return mv;
     }
 
+    // eliminar un conductor 
     @RequestMapping("DeleteCon.htm")
     public ModelAndView formDelete(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -152,6 +157,8 @@ public class ConductorController {
     }
 
     //AÑADIR CONDUCTOR
+    //se cargan en la vista el formulario con todos los datos
+    //necesarios para añadir un conductor
     @RequestMapping(value = "AddCon.htm", method = RequestMethod.GET)
     public ModelAndView formAddCon() {
         System.out.println("vista add conductor");

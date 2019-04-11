@@ -39,6 +39,7 @@ public class ReportesController {
 
     }
 
+    //mostrar vista del balance general 
     @RequestMapping(method = RequestMethod.GET, value = "balanceGeneral.htm")
     public ModelAndView form(HttpServletResponse r) {
 

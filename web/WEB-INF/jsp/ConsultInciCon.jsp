@@ -69,18 +69,7 @@
                                 <p>Modulo Conductores</p>
                             </a>
                         </li>
-                        <li>
-                            <a href=<c:url value="regfalla.htm"></c:url>>
-                                <i class="material-icons">location_on</i>
-                                <p>Modulo Incidencias</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href=<c:url value="reportes.htm"></c:url>>
-                                <i class="material-icons">location_on</i>
-                                <p>Modulo reportes</p>
-                            </a>
-                        </li>
+                        
                         <li class="active-pro">
                             <a href="upgrade.html">
                                 <i class="material-icons">unarchive</i>

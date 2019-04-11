@@ -98,31 +98,21 @@
 
                             </a>
                         </li>              
-                        <li class="active">
+                        <li >
                             <a href=<c:url value="vehiculo.htm"></c:url>>
                                 <i class="material-icons">content_paste</i>
                                 <p>Modulo Vehiculos</p>
                             </a>
                         </li>
-                        <li>
-                            <a href=<c:url value="entrega.htm"></c:url>>
-                                <i class="material-icons">library_books</i>
-                                <p>Modulo Entrega</p>
-                            </a>
-                        </li>
+                        
                         <li  >
                             <a href="<c:url value="conductor.htm"></c:url>">
                                 <i class="material-icons">bubble_chart</i>
                                 <p>Modulo Conductores</p>
                             </a>
                         </li>
-                        <li>
-                            <a href=<c:url value="regfalla.htm"></c:url>>
-                                <i class="material-icons">location_on</i>
-                                <p>Modulo Incidencias</p>
-                            </a>
-                        </li>
-                        <li>
+                       
+                        <li class="active">
                             <a href=<c:url value="reportes.htm"></c:url>>
                                 <i class="material-icons">location_on</i>
                                 <p>Modulo reportes</p>
@@ -224,7 +214,7 @@
                                         <div id="chartContainer" style="height: 370px; width: 100%;"></div>
                                         <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                                     </div>
-
+                                                   <a href="reportes.htm">Regresar a la lista</a>     
                                 </div>
                             </div>
                         </div>

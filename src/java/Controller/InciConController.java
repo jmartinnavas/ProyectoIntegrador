@@ -48,6 +48,7 @@ public class InciConController {
     }
     
     // cargar vista principal de incidencia conductor
+    // la vista se carga con las incidencias del conductor seleccionado 
     @RequestMapping("inciCon.htm")
     public ModelAndView form(HttpServletRequest request) {
         String id = request.getParameter("id");
@@ -64,6 +65,8 @@ public class InciConController {
     }
     
     //añadir Conductor
+    // en la vista se carga el formulario con los campos
+    //necesarios para añadir la incidencia
     @RequestMapping(method = RequestMethod.GET, value = "AddInciCon.htm")
     public ModelAndView formAdd(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
@@ -77,6 +80,9 @@ public class InciConController {
         return mv;
     }
     
+    // añadir incidencia post
+    // los datos del formulario se capturas y envian a la base de datos
+    //para guardar la incidencia del conductor dado
      @RequestMapping(method = RequestMethod.POST, value = "AddInciCon.htm")
     public ModelAndView formAddPost(
             @RequestParam("documento_soporte") MultipartFile file,

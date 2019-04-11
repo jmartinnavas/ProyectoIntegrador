@@ -62,24 +62,14 @@
                                     <p>Modulo Vehiculos</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href="<c:url value="entrega.htm"></c:url>">
-                                    <i class="material-icons">library_books</i>
-                                    <p>Modulo Entrega</p>
-                                </a>
-                            </li>
+                            
                             <li>
                                 <a href="<c:url value="conductor.htm"></c:url>">
                                     <i class="material-icons">bubble_chart</i>
                                     <p>Modulo Conductores</p>
                                 </a>
                             </li>
-                            <li>
-                                <a href=<c:url value="regfalla.htm"></c:url>>
-                                    <i class="material-icons">location_on</i>
-                                    <p>Modulo Incidencias</p>
-                                </a>
-                            </li>
+                            
 
                             <li>
                                 <a href=<c:url value="reportes.htm"></c:url>>
@@ -160,7 +150,6 @@
                                     </div>
                                     <div class="card-footer">
                                         <div class="stats">
-                                            <i class="material-icons text-danger">warning</i> <a href="#pablo">Revisar</a>
                                         </div>
                                     </div>
                                 </div>
@@ -205,8 +194,8 @@
 
                             <div class="col-lg-3 col-md-6 col-sm-6">
                                 <div class="card card-stats">
-                                    <div class="card-header" data-background-color="blue">
-                                        <i class="fa fa-twitter"></i>
+                                    <div class="card-header" data-background-color="red">
+                                        <i class="material-icons"></i>
                                     </div>
                                     <div class="card-content">
                                         <p class="category">Conductores Activos </p>

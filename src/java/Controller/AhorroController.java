@@ -40,6 +40,8 @@ public class AhorroController {
     }
 
     // cargar vista principal de ahorro conductor
+    // la vista recibe la cedula del conductor
+    // retorna los ahorros que ha realizado dicho conductor
     @RequestMapping("ahorro.htm")
     public ModelAndView form(HttpServletRequest request) {
         String cedula = request.getParameter("cedula");
@@ -56,6 +58,7 @@ public class AhorroController {
     }
 
     //eliminar un ahorro
+    // se selecciona un ahorro de la vista y se pasa a la consulta sql 
     @RequestMapping("DeleteAhorro.htm")
     public ModelAndView formDelete(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -66,6 +69,8 @@ public class AhorroController {
         return new ModelAndView("redirect:/conductor.htm");
     }
 
+    
+        // dada una cedula de un conductor, me devuelve toda la informacion del mismo
       private Conductor Selectconductor(String cedula) {
         Integer.parseInt(cedula);
         final Conductor con = new Conductor();
@@ -90,6 +95,8 @@ public class AhorroController {
         });
     }
     //añadir ahorro
+    // se capturasn todos los datos del formulario y se envian a la consulta
+    // para asi añadir un nuevo ahorro a la tabla 
     @RequestMapping(method = RequestMethod.GET, value = "AddAhorro.htm")
     public ModelAndView formAdd(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();

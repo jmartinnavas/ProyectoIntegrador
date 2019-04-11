@@ -46,31 +46,21 @@
 
                             </a>
                         </li>              
-                        <li class="active">
+                        <li >
                             <a href=<c:url value="vehiculo.htm"></c:url>>
                                 <i class="material-icons">content_paste</i>
                                 <p>Modulo Vehiculos</p>
                             </a>
                         </li>
-                        <li>
-                            <a href=<c:url value="entrega.htm"></c:url>>
-                                <i class="material-icons">library_books</i>
-                                <p>Modulo Entrega</p>
-                            </a>
-                        </li>
+                        
                         <li  >
                             <a href="<c:url value="conductor.htm"></c:url>">
                                 <i class="material-icons">bubble_chart</i>
                                 <p>Modulo Conductores</p>
                             </a>
                         </li>
-                        <li>
-                            <a href=<c:url value="regfalla.htm"></c:url>>
-                                <i class="material-icons">location_on</i>
-                                <p>Modulo Incidencias</p>
-                            </a>
-                        </li>
-                        <li>
+                       
+                        <li class="active">
                             <a href=<c:url value="reportes.htm"></c:url>>
                                 <i class="material-icons">location_on</i>
                                 <p>Modulo reportes</p>
@@ -139,8 +129,8 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header" data-background-color="orange">
-                                    <h4 class="title">balance general veHiculos</h4>
+                                <div class="card-header" data-background-color="red">
+                                    <h4 class="title">balance general Vehiculos</h4>
                                     <p class="category">Informacion General del modulo</p>
 
                                 </div>
@@ -160,14 +150,7 @@
                                                     <td><c:out value="${dato.balance}"/></td>
 
 
-                                                    <td>
-                                                        <a class="btn btn-warning" href="<c:url value="ConsultVeh.htm?id=${dato.placa}"></c:url>">Reporte 1</a>
-
-                                                            <a class="btn btn-warning"  href="<c:url value="EditVeh.htm?id=${dato.placa}"></c:url>">Reporte 2</a>
-                                                        <a class="btn btn-warning"  href="<c:url value="DeleteVeh.htm?id=${dato.placa}"></c:url>">Reporte 3
-
-                                                            </a>
-                                                        </td>
+                                                  
                                                     </tr>
                                             </c:forEach>
 
@@ -178,6 +161,7 @@
                             </div>
                         </div>
                     </div>
+                      <a href="reportes.htm">Regresar a la lista</a>
                 </div>
             </div>
 

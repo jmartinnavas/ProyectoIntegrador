@@ -48,40 +48,30 @@
                     <li>
                         <a href="<c:url value="index.htm"></c:url>">
                                 <i class="material-icons">dashboard</i>
-                                                                <p>Pagina Principal</p>
+                                <p>Pagina Principal</p>
 
                             </a>
                         </li>
-                        <li class="active">>
+                        <li class="active">
                             <a href=<c:url value="vehiculo.htm"></c:url>>
                                 <i class="material-icons">content_paste</i>
                                 <p>Modulo Vehiculos</p>
                             </a>
                         </li>
-                        <li>
-                            <a href=<c:url value="entrega.htm"></c:url>>
-                                <i class="material-icons">library_books</i>
-                                <p>Modulo Entrega</p>
-                            </a>
-                        </li>
+
                         <li 
                             <a href="<c:url value="conductor.htm"></c:url>">
                                 <i class="material-icons">bubble_chart</i>
                                 <p>Modulo Conductores</p>
                             </a>
                         </li>
+
                         <li>
-                            <a href=<c:url value="regfalla.htm"></c:url>>
+                            <a href=<c:url value="reportes.htm"></c:url>>
                                 <i class="material-icons">location_on</i>
-                                <p>Modulo Incidencias</p>
+                                <p>Modulo reportes</p>
                             </a>
                         </li>
-             <li>
-                                <a href=<c:url value="reportes.htm"></c:url>>
-                                    <i class="material-icons">location_on</i>
-                                    <p>Modulo reportes</p>
-                                </a>
-                            </li>
                         <li class="active-pro">
                             <a href="upgrade.html">
                                 <i class="material-icons">unarchive</i>
@@ -93,131 +83,131 @@
             </div>
 
             <div class="main-panel">
-                                                     <nav class="navbar navbar-transparent navbar-absolute">
-                        <div class="container-fluid">
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-
-                            <c:choose>
-                                <c:when test="${usuario!=null}">
-                                    <a class="navbar-brand" href="#">Bienvenido ${usuario}</a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a class="navbar-brand" href="#">Bienvenido Invitado</a>
-                                </c:otherwise>
-                            </c:choose>
-                        </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">Notifications</p>
-                                    </a>
-                                    <ul class="dropdown-menu"> 
-                                        <c:choose>
-                                            <c:when test="${usuario==null}">
-                                                <li><a href=<c:url value="Registrarse.htm"></c:url>>Registrate</a></li>
-                                                    <li><a href="ingresar.htm">Ingresa</a></li>           
-                                                </c:when>
-                                                <c:otherwise>
-
-                                                <li><a href="cerrar.htm">Cerrar Sesion</a></li>
-                                                </c:otherwise>
-                                            </c:choose>
-
-
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </nav>
-                <div class="content">
+                <nav class="navbar navbar-transparent navbar-absolute">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="card">
-                                    <div class="card-header" data-background-color="red">
-                                        <h4 class="title">Modificar registro Vehiculo</h4>
-                                        <p class="category">Complete cada uno de los campos</p>
-                                    </div>
-                                    <div class="card-content">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+
+                        <c:choose>
+                            <c:when test="${usuario!=null}">
+                                <a class="navbar-brand" href="#">Bienvenido ${usuario}</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="navbar-brand" href="#">Bienvenido Invitado</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <div class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="material-icons">notifications</i>
+                                    <span class="notification">5</span>
+                                    <p class="hidden-lg hidden-md">Notifications</p>
+                                </a>
+                                <ul class="dropdown-menu"> 
+                                    <c:choose>
+                                        <c:when test="${usuario==null}">
+                                            <li><a href=<c:url value="Registrarse.htm"></c:url>>Registrate</a></li>
+                                                <li><a href="ingresar.htm">Ingresa</a></li>           
+                                            </c:when>
+                                            <c:otherwise>
+
+                                            <li><a href="cerrar.htm">Cerrar Sesion</a></li>
+                                            </c:otherwise>
+                                        </c:choose>
+
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header" data-background-color="red">
+                                    <h4 class="title">Modificar registro Vehiculo</h4>
+                                    <p class="category">Complete cada uno de los campos</p>
+                                </div>
+                                <div class="card-content">
                                     <form:form method="post" commandName="vehiculos" enctype="multipart/form-data" >
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Placa</label>
-                                            <form:input path="placa" class="form-control"  />
-                                            <form:errors path="placa"  cssClass="alert alert-danger" />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Placa</label>
+                                                    <form:input path="placa" class="form-control"  />
+                                                    <form:errors path="placa"  cssClass="alert alert-danger" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Marca</label>
+                                                    <form:input path="marca" class="form-control" />
+                                                    <form:errors path="marca"  cssClass="alert alert-danger" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Marca</label>
-                                            <form:input path="marca" class="form-control" />
-                                            <form:errors path="marca"  cssClass="alert alert-danger" />
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Modelo</label>
-                                            <form:input path="modelo" class="form-control" />
-                                            <form:errors path="modelo"  cssClass="alert alert-danger" />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Modelo</label>
+                                                    <form:input path="modelo" class="form-control" />
+                                                    <form:errors path="modelo"  cssClass="alert alert-danger" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Motor</label>
+                                                    <form:input path="motor" class="form-control" />
+                                                    <form:errors path="motor"  cssClass="alert alert-danger" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Motor</label>
-                                            <form:input path="motor" class="form-control" />
-                                            <form:errors path="motor"  cssClass="alert alert-danger" />
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Fecha de ingreso</label>
-                                            <form:input type="date" path="fecha_ingreso" class="form-control" />
-                                            <form:errors path="fecha_ingreso"  cssClass="alert alert-danger" />
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Fecha de ingreso</label>
+                                                    <form:input type="date" path="fecha_ingreso" class="form-control" />
+                                                    <form:errors path="fecha_ingreso"  cssClass="alert alert-danger" />
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">fecha de vencimiento del soat</label>
+                                                    <form:input type="date" path="fecha_soat" class="form-control" />
+                                                    <form:errors path="fecha_soat"  cssClass="alert alert-danger" />
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">fecha de vencimiento del soat</label>
-                                            <form:input type="date" path="fecha_soat" class="form-control" />
-                                            <form:errors path="fecha_soat"  cssClass="alert alert-danger" />
+
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">seleccionar archivo</label>
+
+                                                    <form:input  type="file" path="foto" class="form-control"  />
+                                                </div>
+                                            </div>
+
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">seleccionar archivo</label>
-
-                                            <form:input  type="file" path="foto" class="form-control"  />
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <input type="submit" class="btn btn-primary pull-right" value="aplicar cambios" />
+                                        <input type="submit" class="btn btn-primary pull-right" value="aplicar cambios" />
                                         <div class="clearfix"></div>
                                     </form:form>
                                 </div>
                             </div>
                         </div>
-                      
+
                     </div>
                 </div>
             </div>

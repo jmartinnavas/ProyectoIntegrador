@@ -57,8 +57,9 @@ public class VehiculoController {
         mv.addObject("vehiculos", new Vehiculo(v.getPlaca(), v.getMarca(), v.getModelo(), v.getMotor(), v.getFecha_ingreso(), v.getFecha_soat(), v.getFoto()));
         return mv;
     }
-//editar vehiculo
+     //editar vehiculo
     //cargar vista editar
+    //se carga el formulario con los datos que queremos editar 
 
     @RequestMapping(method = RequestMethod.GET, value = "EditVeh.htm")
     public ModelAndView formeEdit(HttpServletRequest request) {
@@ -73,6 +74,7 @@ public class VehiculoController {
     }
 
     //editar post
+    //los cambios se envian a la bd para actualizar el registro 
     @RequestMapping(method = RequestMethod.POST, value = "EditVeh.htm")
     public ModelAndView form(
             @RequestParam("foto") MultipartFile file,
@@ -133,6 +135,7 @@ public class VehiculoController {
     }
 
     //añadir vehiculo
+    //carga el formulario con los campos 
     @RequestMapping(method = RequestMethod.GET, value = "AddVeh.htm")
     public ModelAndView formAdd() {
         ModelAndView mv = new ModelAndView();
@@ -141,6 +144,7 @@ public class VehiculoController {
         return mv;
     }
 
+    //los datos del formulario se envian a la bd 
     @RequestMapping(method = RequestMethod.POST, value = "AddVeh.htm")
     public ModelAndView formAddPost(
             @RequestParam("foto") MultipartFile file,

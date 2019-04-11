@@ -50,6 +50,7 @@ public class InciVehController {
     }
 
     // cargar vista principal de incidencia vehiculo
+    // se muestran todas la incidencias que tenga el vehiculo que se selecciono en la tabla 
     @RequestMapping("inciVeh.htm")
     public ModelAndView form(HttpServletRequest request) {
         String id = request.getParameter("id");
@@ -66,6 +67,7 @@ public class InciVehController {
     }
 
     //cargar vista consultar incidencia vehiculo
+    //muestra una vista mas detallada de la incidencia seleccionada 
     @RequestMapping(method = RequestMethod.GET, value = "ConsultInciVeh.htm")
     public ModelAndView formconsulta(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
@@ -77,6 +79,8 @@ public class InciVehController {
     }
 
     //añadir incidencia vehiculo
+    //en la vista se carga el formulario con los campos necesaros para 
+    //agreagar una nueva incidencia
     @RequestMapping(method = RequestMethod.GET, value = "AddInciVeh.htm")
     public ModelAndView formAdd(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
@@ -90,6 +94,9 @@ public class InciVehController {
         return mv;
     }
 
+    // añadir incidencia del vehiculo post
+    //se captura el formulario de la vista y los datos llenados
+    //son enviados a la base de datos para crear el nuevo registro
     @RequestMapping(method = RequestMethod.POST, value = "AddInciVeh.htm")
     public ModelAndView formAddPost(
             @RequestParam("documento_soporte") MultipartFile file,
@@ -138,6 +145,8 @@ public class InciVehController {
     }
 
     //EDITAR incidencia Vehiculo
+    //se traen los datos de la incidencia que queremos editar
+    //para realizar los cambios
     @RequestMapping(method = RequestMethod.GET, value = "EditInciVeh.htm")
     public ModelAndView formeEdit(HttpServletRequest request) {
 
@@ -153,6 +162,8 @@ public class InciVehController {
     }
 
     //editar post
+    //cuando presionamos el boton en guardar cambios, el formulario con 
+    //los nuevos datos se envian a la base de datos para actualizar
     @RequestMapping(method = RequestMethod.POST, value = "EditInciVeh.htm")
     public ModelAndView form(
             @RequestParam("documento_soporte") MultipartFile file,
