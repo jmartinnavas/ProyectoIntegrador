@@ -52,7 +52,8 @@
                         <li class="active">
                             <a href="<c:url value="index.htm"></c:url>">
                                     <i class="material-icons">dashboard</i>
-                                    <p>Dashboard</p>
+                                                                    <p>Pagina Principal</p>
+
                                 </a>
                             </li>
                             <li>
@@ -81,9 +82,9 @@
                             </li>
 
                             <li>
-                                <a href=<c:url value="egreso.htm"></c:url>>
+                                <a href=<c:url value="reportes.htm"></c:url>>
                                     <i class="material-icons">location_on</i>
-                                    <p>Modulo Egresos</p>
+                                    <p>Modulo reportes</p>
                                 </a>
                             </li>
                             <li class="active-pro">

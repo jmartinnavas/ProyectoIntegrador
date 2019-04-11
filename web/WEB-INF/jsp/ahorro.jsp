@@ -53,7 +53,8 @@
                             <li>
                                 <a href="<c:url value="index.htm"></c:url>">
                                     <i class="material-icons">dashboard</i>
-                                    <p>Dashboard</p>
+                                                                    <p>Pagina Principal</p>
+
                                 </a>
                             </li>
                             <li>

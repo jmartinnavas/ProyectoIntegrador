@@ -212,7 +212,7 @@ public class ConductorController {
      * @param cedula cedula del conductor a buscar
      * @return objeto conductor asociado con la cedula buscada
      */
-    private Conductor Selectconductor(String cedula) {
+    public Conductor Selectconductor(String cedula) {
         Integer.parseInt(cedula);
         final Conductor con = new Conductor();
         String query = "SELECT * FROM conductor WHERE cedula=" + cedula + ";";
@@ -227,7 +227,7 @@ public class ConductorController {
                     con.setTelefono_soporte(rs.getString("telefono_soporte"));
                     con.setEstado(rs.getString("estado"));
                     con.setFoto(rs.getString("foto"));
-                    con.setPlaca(rs.getString("placa"));
+                    con.setPlaca(rs.getString("placa").trim());
                     con.setFecha_ingreso(rs.getString("fecha_ingreso"));
 
                 }

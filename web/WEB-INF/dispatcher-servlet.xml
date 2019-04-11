@@ -20,6 +20,9 @@
         <property name="mappings">
             <props>             
                 <prop key="index.htm">indexController</prop>
+                <prop key="prueba.htm">indexController</prop>
+                <prop key="reportes.htm">indexController</prop>
+
                 <!--mapping vehiculos-->
                 <prop key="vehiculo.htm">vehiculoController</prop>
                 <prop key="AddVeh.htm">vehiculoController</prop>
@@ -58,6 +61,8 @@
                 <prop key="balanceGeneral.htm">reportesController</prop>
                 <prop key="balanceGeneralConductores.htm">reportesController</prop>
                 <prop key="incidenciaCritica.htm">reportesController</prop>
+                <prop key="balanceGeneralVehiculos.htm">reportesController</prop>
+
 
                 
             </props>

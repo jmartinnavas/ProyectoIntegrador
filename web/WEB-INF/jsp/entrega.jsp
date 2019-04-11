@@ -52,7 +52,8 @@
                             <li>
                                 <a href="<c:url value="index.htm"></c:url>">
                                     <i class="material-icons">dashboard</i>
-                                    <p>Dashboard</p>
+                                                                    <p>Pagina Principal</p>
+
                                 </a>
                             </li>
                             <li>
@@ -164,9 +165,7 @@
                                                         <td><c:out value="${dato.descripcion}"/></td>
                                
                                                         <td>
-                                                            <a  href="<c:url value="ConsultInciCon.htm?id=${dato.id}"></c:url>">
-                                                             <i class="material-icons right">zoom_in</i>
-                                                            </a>
+                                                           
 
                                                                 <a  href="<c:url value="EditEntrega.htm?id=${dato.id}"></c:url>">
                                                             <i class="material-icons right">edit</i>

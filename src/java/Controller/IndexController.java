@@ -59,5 +59,18 @@ public class IndexController {
 
         return mv;
     }
+    @RequestMapping(method = RequestMethod.GET, value = "prueba.htm")
+    public ModelAndView formPrueba(HttpServletRequest request) {
 
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("prueba");
+        return mv;
+    }
+        @RequestMapping(method = RequestMethod.GET, value = "reportes.htm")
+    public ModelAndView formReportes(HttpServletRequest request) {
+
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("Reportes");
+        return mv;
+    }
 }

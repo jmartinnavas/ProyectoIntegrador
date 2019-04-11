@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Model.Conductor;
 import Model.Connect;
 import Model.Entrega;
 
@@ -24,9 +25,6 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 
-
-
-
 /**
  *
  * @author fegobe
@@ -35,11 +33,12 @@ import org.springframework.stereotype.Controller;
 public class EntregaController {
 
     private JdbcTemplate jdbc;
+    private ConductorController cc;
 
     public EntregaController() {
         Connect con = new Connect();
         this.jdbc = new JdbcTemplate(con.GetConnect());
-
+        cc = new ConductorController();
     }
 
     // cargar vista principal de incidencia conductor
@@ -101,7 +100,7 @@ public class EntregaController {
                 + "valor=?,"
                 + "descripcion=?"
                 + " WHERE id=?;";
-        this.jdbc.update(sql, e.getFecha_entrega(), e.getValor(), e.getDescripcion(),e.getId()
+        this.jdbc.update(sql, e.getFecha_entrega(), e.getValor(), e.getDescripcion(), e.getId()
         );
 
         mv = new ModelAndView("redirect:/entrega.htm?cedula=" + e.getConductor());
@@ -124,7 +123,10 @@ public class EntregaController {
         this.jdbc.update(sql, e.getFecha_entrega(), e.getValor(), e.getDescripcion(),
                 Integer.parseInt(e.getConductor())
         );
-
+        Conductor c = cc.Selectconductor(e.getConductor());
+        sql = "insert into ingresos_vehiculos (valor,vehiculo,fecha) values (" + e.getValor()
+                + ", '" + c.getPlaca() + "', '" + e.getFecha_entrega() + "')";
+        jdbc.execute(sql);
         mv = new ModelAndView("redirect:/entrega.htm?cedula=" + Integer.parseInt(e.getConductor()));
 
         return mv;

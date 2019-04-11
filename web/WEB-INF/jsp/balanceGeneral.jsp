@@ -1,6 +1,36 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
+<%@ page import="com.google.gson.Gson"%>
+<%@ page import="com.google.gson.JsonObject"%>
+
+
+<%
+    Gson gsonObj = new Gson();
+    Map<Object, Object> map = null;
+    List<Map<Object, Object>> list = new ArrayList<Map<Object, Object>>();
+    int ev = Integer.parseInt(response.getHeader("ev"));
+    int ec = Integer.parseInt(response.getHeader("ec"));
+    int e = Integer.parseInt(response.getHeader("e"));
+   
+    
+
+    map = new HashMap<Object, Object>();
+    map.put("label", "Egresos Vehiculos");
+    map.put("y", ev);
+    list.add(map);
+    map = new HashMap<Object, Object>();
+    map.put("label", "Egresos Conductores");
+    map.put("y", ec);
+    list.add(map);
+      map = new HashMap<Object, Object>();
+    map.put("label", "Ingresos");
+    map.put("y", e);
+    list.add(map);
+
+    String dataPoints = gsonObj.toJson(list);
+%>
 <!DOCTYPE html>
 <html>
     <meta charset="utf-8" />
@@ -19,6 +49,28 @@
         <!--     Fonts and icons     -->
         <link href=<c:url value="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/> rel="stylesheet"/>
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel='stylesheet' type='text/css'/>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var chart = new CanvasJS.Chart("chartContainer", {
+                theme: "light2", // "light1", "dark1", "dark2"
+                exportEnabled: false,
+                animationEnabled: true,
+                title: {
+                    text: "General"
+                },
+                data: [{
+                        type: "pie",
+                        toolTipContent: "<b>{label}</b>: {y}%",
+                        indexLabelFontSize: 8,
+                        indexLabel: "{label} - {y}%",
+                        dataPoints: <%out.print(dataPoints);%>
+                    }]
+            });
+            chart.render();
+
+        }
+    </script>
 </head>
 <body>
 
@@ -42,7 +94,8 @@
                     <li>
                         <a href="<c:url value="index.htm"></c:url>">
                                 <i class="material-icons">dashboard</i>
-                                <p>Dashboard</p>
+                                                                <p>Pagina Principal</p>
+
                             </a>
                         </li>              
                         <li class="active">
@@ -70,9 +123,9 @@
                             </a>
                         </li>
                         <li>
-                            <a href=<c:url value="egreso.htm"></c:url>>
+                            <a href=<c:url value="reportes.htm"></c:url>>
                                 <i class="material-icons">location_on</i>
-                                <p>Modulo Egresos</p>
+                                <p>Modulo reportes</p>
                             </a>
                         </li>
                         <li class="active-pro">
@@ -166,9 +219,10 @@
                                             <c:otherwise>
 
                                                 <input style="color: green" class="form-control" value="<c:out value="${suma}"/>" disabled="disabled" />
-                                                </c:otherwise>
-                                            </c:choose>
-
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                                        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                                     </div>
 
                                 </div>

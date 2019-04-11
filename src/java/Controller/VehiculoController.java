@@ -85,10 +85,8 @@ public class VehiculoController {
         ModelAndView mv;
         String path = request.getServletContext().getRealPath("/PUBLIC") + "/resources/img/profilesFolder/vehiculos/";
 
-   
-            String id = request.getParameter("id");
-            if (!file.isEmpty())
-            {
+        String id = request.getParameter("id");
+        if (!file.isEmpty()) {
             String sql = "UPDATE vehiculo SET "
                     + "marca=? ,"
                     + "modelo=?,"
@@ -99,8 +97,8 @@ public class VehiculoController {
                     + "WHERE placa=?;";
 
             this.jdbc.update(sql, v.getMarca(), Integer.parseInt(v.getModelo()),
-               Integer.parseInt( v.getMotor()), v.getFecha_ingreso(), v.getFecha_soat(), "/PUBLIC/resources/img/profilesFolder/vehiculos/" + v.getPlaca() + "." + file.getContentType().split("/")[1],
-                     id);
+                    Integer.parseInt(v.getMotor()), v.getFecha_ingreso(), v.getFecha_soat(), "/PUBLIC/resources/img/profilesFolder/vehiculos/" + v.getPlaca() + "." + file.getContentType().split("/")[1],
+                    id);
 
             InputStream is;
             try {
@@ -117,21 +115,20 @@ public class VehiculoController {
             } catch (IOException ex) {
                 Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
-            else {
-              String sql = "UPDATE vehiculo SET "
+        } else {
+            String sql = "UPDATE vehiculo SET "
                     + "marca=? ,"
                     + "modelo=?,"
                     + "motor=?,"
                     + "fecha_ingreso=?,"
-                    + "fecha_soat=?"              
+                    + "fecha_soat=?"
                     + "WHERE placa=?;";
 
             this.jdbc.update(sql, v.getMarca(), Integer.parseInt(v.getModelo()),
-               Integer.parseInt( v.getMotor()), v.getFecha_ingreso(), v.getFecha_soat(), id);
-            }
-            mv = new ModelAndView("redirect:/vehiculo.htm");
-        
+                    Integer.parseInt(v.getMotor()), v.getFecha_ingreso(), v.getFecha_soat(), id);
+        }
+        mv = new ModelAndView("redirect:/vehiculo.htm");
+
         return mv;
     }
 
@@ -154,13 +151,12 @@ public class VehiculoController {
     ) {
 
         ModelAndView mv;
-
         String path = request.getServletContext().getRealPath("/PUBLIC") + "/resources/img/profilesFolder/vehiculos/";
         System.out.println(path);
         String sql = "Insert into vehiculo(placa,marca,modelo,motor,fecha_ingreso,fecha_soat ,foto)"
                 + " VALUES (?,?,?,?,?,?,?)";
         this.jdbc.update(sql, v.getPlaca(), v.getMarca(), Integer.parseInt(v.getModelo()),
-               Integer.parseInt( v.getMotor()), v.getFecha_ingreso(), v.getFecha_soat(), "/PUBLIC/resources/img/profilesFolder/vehiculos/" + v.getPlaca() + "." + file.getContentType().split("/")[1]
+                Integer.parseInt(v.getMotor()), v.getFecha_ingreso(), v.getFecha_soat(), "/PUBLIC/resources/img/profilesFolder/vehiculos/" + v.getPlaca() + "." + file.getContentType().split("/")[1]
         );
 
         InputStream is;

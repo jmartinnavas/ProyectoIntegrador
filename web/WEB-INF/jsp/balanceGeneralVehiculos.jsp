@@ -1,26 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
- <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
- <%@ page import="java.util.*" %>
- <%@ page import="com.google.gson.Gson"%>
- <%@ page import="com.google.gson.JsonObject"%>
- 
- 
-     <%
-    Gson gsonObj = new Gson();
-    Map<Object,Object> map = null;
-    List<Map<Object,Object>> list = new ArrayList<Map<Object,Object>>();
-        int c= Integer.parseInt(response.getHeader("porCon"));
-      int v= Integer.parseInt(response.getHeader("porVeh"));
-    map = new HashMap<Object,Object>(); map.put("label", "Vehiculos"); map.put("y", v); list.add(map);
-    map = new HashMap<Object,Object>(); map.put("label", "Conductores"); map.put("y", c); list.add(map);
-    
-     
-    String dataPoints = gsonObj.toJson(list);
-    %>
-    
-    
-    
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <meta charset="utf-8" />
@@ -39,28 +19,6 @@
         <!--     Fonts and icons     -->
         <link href=<c:url value="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/> rel="stylesheet"/>
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel='stylesheet' type='text/css'/>
-<script type="text/javascript">
-    window.onload = function() { 
-     
-    var chart = new CanvasJS.Chart("chartContainer", {
-    	theme: "light2", // "light1", "dark1", "dark2"
-    	exportEnabled: false,
-    	animationEnabled: true,
-    	title: {
-    		text: "Incidencias"
-    	},
-    	data: [{
-    		type: "pie",
-    		toolTipContent: "<b>{label}</b>: {y}%",
-    		indexLabelFontSize: 8,
-    		indexLabel: "{label} - {y}%",
-    		dataPoints: <%out.print(dataPoints);%>
-    	}]
-    });
-    chart.render();
-     
-    }
-    </script>
 </head>
 <body>
 
@@ -179,45 +137,46 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-12">
                             <div class="card">
-                                <div class="card-header" data-background-color="red">
-                                    <h4 class="title">Consultar Reporte general</h4>
-                                    <p class="category">Revision Detallada</p>
+                                <div class="card-header" data-background-color="orange">
+                                    <h4 class="title">balance general veHiculos</h4>
+                                    <p class="category">Informacion General del modulo</p>
+
                                 </div>
-                                <div class="card-content">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Mayor Incidencia De vehiculos</label>
-                                                <input class="form-control" value="<c:out value="${inciVeh}"/>" disabled="disabled" />
-                                            </div>
-                                            <div class="form-group label-floating">
- 
-                                                <label class="control-label">Mayor Incidencia De Conductores</label>
-                                                <input class="form-control" value="<c:out value="${inciCon}"/>" disabled="disabled" />
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group label-floating">
-                                        
-                                                <label class="control-label">mayor Incidencia</label>
-                                                <input class="form-control" value="<c:out value="${maxInci}"/>" disabled="disabled" />
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead class="text-primary">
+                                        <th data-field="placa"  >Placa</th>
+
+                                        <th data-field="marca" >balance</th>
 
 
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${datos}" var="dato">
+                                                <tr style="background-color:#FFFF;">
+                                                    <td><c:out value="${dato.nombre}"/></td>
+                                                    <td><c:out value="${dato.balance}"/></td>
 
-                                            </div>
-                                                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-                                        </div>
 
-                                    </div>
+                                                    <td>
+                                                        <a class="btn btn-warning" href="<c:url value="ConsultVeh.htm?id=${dato.placa}"></c:url>">Reporte 1</a>
 
+                                                            <a class="btn btn-warning"  href="<c:url value="EditVeh.htm?id=${dato.placa}"></c:url>">Reporte 2</a>
+                                                        <a class="btn btn-warning"  href="<c:url value="DeleteVeh.htm?id=${dato.placa}"></c:url>">Reporte 3
+
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                            </c:forEach>
+
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>

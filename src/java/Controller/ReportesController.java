@@ -14,6 +14,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.apache.catalina.Session;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -36,10 +38,9 @@ public class ReportesController {
         this.jdbc = new JdbcTemplate(con.GetConnect());
 
     }
-    //cargar vista consultar conductor
 
     @RequestMapping(method = RequestMethod.GET, value = "balanceGeneral.htm")
-    public ModelAndView form() {
+    public ModelAndView form(HttpServletResponse r) {
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("balanceGeneral");
@@ -50,9 +51,20 @@ public class ReportesController {
         l = jdbc.queryForList(SQL);
         Double suma = 0.0;
         System.out.println(l);
+        String ev = "";
+        String ec = "";
+        String e = "";
         for (int i = 0; i < l.size(); i++) {
             Map<String, Object> m = (Map<String, Object>) l.get(i);
+
             String tipo = m.get("nombre").toString();
+            if (tipo.equals("egresos por incidencias de vehiculos")) {
+                ev = m.get("total").toString();
+            } else if (tipo.equals("egresos por incidencias de conductores")) {
+                ec = m.get("total").toString();
+            } else if (tipo.equals("ingresos por entregas")) {
+                e = m.get("total").toString();
+            }
             if (tipo.contains("egresos")) {
                 suma -= Double.parseDouble(m.get("total").toString());
             } else if (tipo.contains("ingresos")) {
@@ -61,6 +73,11 @@ public class ReportesController {
         }
         mv.addObject("suma", suma);
         mv.addObject("datos", l);
+        System.out.println(ev+", "+ec+", "+e);
+        r.addHeader("ev", ev);
+        r.addHeader("ec", ec);
+        r.addHeader("e", e);
+
         return mv;
     }
 
@@ -88,7 +105,7 @@ public class ReportesController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "incidenciaCritica.htm")
-    public ModelAndView incidenciaCritica() {
+    public ModelAndView incidenciaCritica(HttpServletResponse r) {
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("incidenciaCritica");
@@ -110,15 +127,21 @@ public class ReportesController {
         } else {
             mv.addObject("maxInci", lConductores.get("falla") + " De conductores");
         }
+        Double valorTotal = valorVehiculo + valorConductor;
+        int porVeh = (int) ((100 * valorVehiculo) / valorTotal);
+        int porCon = 100 - porVeh;
         mv.addObject("inciCon", lConductores.get("falla").toString() + "= " + valorConductor);
         mv.addObject("inciVeh", lVehiculos.get("falla").toString() + "= " + valorVehiculo);
-
+        mv.addObject("porVeh", porVeh);
+        mv.addObject("porCon", porCon);
+        r.addHeader("porVeh", porVeh + "");
+        r.addHeader("porCon", porCon + "");
         return mv;
     }
-    
+
     /*
     CREATE OR REPLACE FUNCTION funcion_area_perimetro () RETURNS trigger AS
-$$
+*
 BEGIN
 		vehiculo integer;
         select placa into vehiculo from conductor where cedula= new.conductor;
@@ -128,30 +151,29 @@ BEGIN
        RETURN NEW;
 END;
     
-    */
-        @RequestMapping(method = RequestMethod.GET, value = "balanceGeneralVehiculos.htm")
+     */
+    @RequestMapping(method = RequestMethod.GET, value = "balanceGeneralVehiculos.htm")
     public ModelAndView generalVehiculos() {
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("balanceGeneralVehiculos");
-        String SQL = "select 'ingresos por entregas' as nombre ,sum (e.valor) as total from entregas e union"
-                + " select 'egresos por incidencias de vehiculos' as nombre ,sum (iv.costo) as total from incidencias_vehiculos iv union"
-                + " select 'egresos por incidencias de conductores' as nombre ,sum (ic.costo) as total from incidencias_conductores ic";
+        String SQL = "select nombre,  sum(valor) as balance from (\n"
+                + "select 'ingreso' as tipo, v.placa||' '||v.marca as nombre,sum(inv.valor) as valor\n"
+                + "from vehiculo v inner join ingresos_vehiculos inv on (v.placa=inv.vehiculo)\n"
+                + "group by v.placa\n"
+                + "union\n"
+                + "select 'egreso' as tipo,v.placa ||' '||v.marca as nombre,sum(iv.costo)*-1 as valor\n"
+                + "from vehiculo v inner join incidencias_vehiculos iv on (v.placa=iv.vehiculo)\n"
+                + "group by v.placa) ivc\n"
+                + "group by nombre order by balance desc;\n";
         List l;
         l = jdbc.queryForList(SQL);
-        Double suma = 0.0;
-        System.out.println(l);
-        for (int i = 0; i < l.size(); i++) {
-            Map<String, Object> m = (Map<String, Object>) l.get(i);
-            String tipo = m.get("nombre").toString();
-            if (tipo.contains("egresos")) {
-                suma -= Double.parseDouble(m.get("total").toString());
-            } else if (tipo.contains("ingresos")) {
-                suma += Double.parseDouble(m.get("total").toString());
-            }
-        }
-        mv.addObject("suma", suma);
+
         mv.addObject("datos", l);
         return mv;
     }
+    /*
+
+     */
+
 }

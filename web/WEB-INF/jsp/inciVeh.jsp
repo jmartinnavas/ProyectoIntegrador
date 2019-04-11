@@ -52,7 +52,8 @@
                             <li>
                                 <a href="<c:url value="index.htm"></c:url>">
                                     <i class="material-icons">dashboard</i>
-                                    <p>Dashboard</p>
+                                    <p>Pagina Principal</p>
+
                                 </a>
                             </li>
                             <li>
@@ -167,11 +168,16 @@
                                                         <td><c:out value="${dato.tipo_falla}"/></td>
 
 
-                                                        <td>
-                                                            <a class="btn btn-warning" href="<c:url value="ConsultInciVeh.htm?id=${dato.id}"></c:url>">Consultar</a>
+                                                            <td>
+                                                            <a  href="<c:url value="ConsultInciVeh.htm?id=${dato.id}"></c:url>">
+                                                             <i class="material-icons right">zoom_in</i>
+                                                            </a>
 
-                                                                <a class="btn btn-warning"  href="<c:url value="EditInciVeh.htm?id=${dato.id}"></c:url>">Modificar</a>
-                                                            <a class="btn btn-warning"  href="<c:url value="DeleteInciVeh.htm?id=${dato.id}"></c:url>">Eliminar
+                                                                <a  href="<c:url value="EditInciVeh.htm?id=${dato.id}"></c:url>">
+                                                            <i class="material-icons right">edit</i>
+                                                            </a>
+                                                            <a  href="<c:url value="DeleteInciVeh.htm?id=${dato.id}"></c:url>">
+                                                                <i class="material-icons right">delete</i>
 
                                                                 </a>
                                                             </td>
